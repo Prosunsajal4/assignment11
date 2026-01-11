@@ -372,8 +372,18 @@ async function run() {
       const userData = req.body;
       userData.created_at = new Date().toISOString();
       userData.last_loggedIn = new Date().toISOString();
-      userData.role =
-        userData.email === "prosunsajal123@gmail.com" ? "admin" : "customer";
+      // Assign roles based on email
+      if (userData.email === "prosunsajal123@gmail.com") {
+        userData.role = "admin";
+      } else if (userData.email === "admin@bookcourier.com") {
+        userData.role = "admin";
+      } else if (userData.email === "seller@bookcourier.com") {
+        userData.role = "seller";
+      } else if (userData.email === "customer@bookcourier.com") {
+        userData.role = "customer";
+      } else {
+        userData.role = "customer"; // Default role for new users
+      }
 
       const query = {
         email: userData.email,
@@ -387,8 +397,15 @@ async function run() {
         const updateFields = {
           last_loggedIn: new Date().toISOString(),
         };
+        // Update role for demo accounts
         if (userData.email === "prosunsajal123@gmail.com") {
           updateFields.role = "admin";
+        } else if (userData.email === "admin@bookcourier.com") {
+          updateFields.role = "admin";
+        } else if (userData.email === "seller@bookcourier.com") {
+          updateFields.role = "seller";
+        } else if (userData.email === "customer@bookcourier.com") {
+          updateFields.role = "customer";
         }
         const result = await usersCollection.updateOne(query, {
           $set: updateFields,
