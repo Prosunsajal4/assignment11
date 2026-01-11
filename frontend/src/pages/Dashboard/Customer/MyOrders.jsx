@@ -1,4 +1,4 @@
-import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import BookCourierSpinner from "../../../components/Shared/BookCourierSpinner";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -20,7 +20,7 @@ const MyOrders = () => {
   });
   console.log(orders);
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <BookCourierSpinner />;
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">

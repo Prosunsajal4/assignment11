@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import BookDataRow from "../../../components/Dashboard/TableRows/BookDataRow";
 import useAuth from "../../../hooks/useAuth";
-import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import BookCourierSpinner from "../../../components/Shared/BookCourierSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyInventory = () => {
@@ -15,7 +15,7 @@ const MyInventory = () => {
     },
   });
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <BookCourierSpinner />;
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">

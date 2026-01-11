@@ -10,12 +10,11 @@ const CustomerStatistics = () => {
 
   useEffect(() => {
     if (!user?.email) return;
-    setLoading(true);
     axiosSecure
       .get("/my-orders")
       .then((res) => setOrders(res.data || []))
       .finally(() => setLoading(false));
-  }, [user?.email]);
+  }, [user?.email, axiosSecure]);
 
   const totalSpent = orders.reduce((sum, order) => sum + (order.price || 0), 0);
 

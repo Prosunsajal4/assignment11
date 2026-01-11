@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Container from "../../components/Shared/Container";
 import toast from "react-hot-toast";
+import BookCourierSpinner from "../../components/Shared/BookCourierSpinner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -29,17 +30,17 @@ const Contact = () => {
     {
       icon: "📍",
       title: "Our Location",
-      content: "123 Book Street, Dhaka 1205, Bangladesh",
+      content: "Khulna, Bangladesh",
     },
     {
       icon: "📧",
       title: "Email Us",
-      content: "support@bookcourier.com",
+      content: "prosunsajal123@gmail.com",
     },
     {
       icon: "📞",
       title: "Call Us",
-      content: "+880 1234-567890",
+      content: "+8801911572117",
     },
     {
       icon: "⏰",
@@ -140,25 +141,7 @@ const Contact = () => {
               >
                 {isSubmitting ? (
                   <>
-                    <svg
-                      className="w-5 h-5 animate-spin"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      />
-                    </svg>
+                    <BookCourierSpinner size={20} />
                     Sending...
                   </>
                 ) : (

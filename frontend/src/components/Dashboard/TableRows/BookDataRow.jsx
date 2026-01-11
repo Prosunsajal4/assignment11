@@ -12,7 +12,7 @@ const BookDataRow = ({ book }) => {
   const queryClient = useQueryClient();
   const { user } = useAuth();
 
-  const { mutateAsync: deleteBook, isPending: deleting } = useMutation({
+  const { mutateAsync: deleteBook } = useMutation({
     mutationFn: async () => {
       // Adjust endpoint if your backend expects a different path
       return axiosSecure.delete(`/books/${book._id}`);

@@ -3,8 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { imageUpload, saveOrUpdateUser } from "../../utils";
+import BookCourierSpinner from "../../components/Shared/BookCourierSpinner";
 
 const SignUp = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
@@ -12,6 +16,8 @@ const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || "/";
+  const [showPassword, setShowPassword] = useState(false);
+  const queryClient = useQueryClient();
 
   // React Hook Form
   const {
@@ -42,6 +48,9 @@ const SignUp = () => {
       const result = await createUser(email, password);
 
       await saveOrUpdateUser({ name, email, image: imageURL });
+
+      // Invalidate role query to ensure fresh data
+      queryClient.invalidateQueries({ queryKey: ["role", email] });
 
       // 2. Generate image url from selected file
 
@@ -96,6 +105,9 @@ const SignUp = () => {
         email: user?.email,
         image: user?.photoURL,
       });
+
+      // Invalidate role query to ensure fresh data
+      queryClient.invalidateQueries({ queryKey: ["role", user?.email] });
 
       navigate(from, { replace: true });
       toast.success("Signup Successful");
@@ -202,20 +214,29 @@ const SignUp = () => {
                   Password
                 </label>
               </div>
-              <input
-                type="password"
-                autoComplete="new-password"
-                id="password"
-                placeholder="*******"
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters",
-                  },
-                })}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="new-password"
+                  id="password"
+                  placeholder="*******"
+                  className="w-full px-3 py-2 pr-10 border rounded-md border-gray-300 focus:outline-lime-500 bg-gray-200 text-gray-900"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                  })}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
               {errors.password && (
                 <p className="text-red-500 text-xs mt-1">
                   {errors.password.message}
@@ -229,11 +250,7 @@ const SignUp = () => {
               type="submit"
               className="bg-lime-500 w-full rounded-md py-3 text-white"
             >
-              {loading ? (
-                <TbFidgetSpinner className="animate-spin m-auto" />
-              ) : (
-                "Continue"
-              )}
+              {loading ? <BookCourierSpinner size={24} /> : "Continue"}
             </button>
           </div>
         </form>

@@ -48,6 +48,8 @@ const Navbar = () => {
     { to: "/books", label: "All Books" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
+    { to: "/blog", label: "Blog" },
+    { to: "/help", label: "Help" },
   ];
 
   return (
@@ -62,7 +64,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <div className="w-10 h-10 bg-linear-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
               <FaBook className="text-xl text-white" />
             </div>
             <span className="font-bold text-xl text-gray-800 dark:text-white hidden sm:block">
@@ -125,7 +127,7 @@ const Navbar = () => {
                   {user ? (
                     <>
                       {/* User Info */}
-                      <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700">
+                      <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-linear-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700">
                         <div className="flex items-center gap-3">
                           <img
                             src={user.photoURL || avatarImg}
@@ -214,7 +216,7 @@ const Navbar = () => {
                       <Link
                         to="/signup"
                         onClick={() => setIsOpen(false)}
-                        className="block px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl text-center font-medium mt-2 hover:shadow-lg transition-shadow duration-200"
+                        className="block px-4 py-3 bg-linear-to-r from-indigo-500 to-purple-500 text-white rounded-xl text-center font-medium mt-2 hover:shadow-lg transition-shadow duration-200"
                       >
                         Sign Up
                       </Link>

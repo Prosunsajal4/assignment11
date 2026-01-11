@@ -11,7 +11,6 @@ const SellerStatistics = () => {
 
   useEffect(() => {
     if (!user?.email) return;
-    setLoading(true);
     Promise.all([
       axiosSecure.get(`/my-inventory/${user.email}`),
       axiosSecure.get(`/manage-orders/${user.email}`),
@@ -21,7 +20,7 @@ const SellerStatistics = () => {
         setOrders(ordersRes.data || []);
       })
       .finally(() => setLoading(false));
-  }, [user?.email]);
+  }, [user?.email, axiosSecure]);
 
   const totalRevenue = orders.reduce(
     (sum, order) => sum + (order.price || 0),

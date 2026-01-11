@@ -1,12 +1,20 @@
 import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+import BookCourierSpinner from "../../components/Shared/BookCourierSpinner";
 import useAuth from "../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { saveOrUpdateUser } from "../../utils";
 import { useState } from "react";
-import { FaUserShield, FaUserTie, FaUser } from "react-icons/fa";
+import {
+  FaUserShield,
+  FaUserTie,
+  FaUser,
+  FaEye,
+  FaEyeSlash,
+} from "react-icons/fa";
+import { useQueryClient } from "@tanstack/react-query";
+import ForgotPasswordModal from "../../components/Modal/ForgotPasswordModal";
 
 const Login = () => {
   const { signIn, signInWithGoogle, loading, user, setLoading } = useAuth();
@@ -14,6 +22,9 @@ const Login = () => {
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+  const queryClient = useQueryClient();
 
   const from = location.state || "/";
 
@@ -42,7 +53,7 @@ const Login = () => {
     },
   };
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <BookCourierSpinner />;
   if (user) return <Navigate to={from} replace={true} />;
 
   const fillDemoCredentials = (role) => {
@@ -68,6 +79,9 @@ const Login = () => {
         image: user?.photoURL,
       });
 
+      // Invalidate role query to ensure fresh data
+      queryClient.invalidateQueries({ queryKey: ["role", user?.email] });
+
       navigate(from, { replace: true });
       toast.success("Login Successful");
     } catch (err) {
@@ -87,6 +101,10 @@ const Login = () => {
         email: user?.email,
         image: user?.photoURL,
       });
+
+      // Invalidate role query to ensure fresh data
+      queryClient.invalidateQueries({ queryKey: ["role", user?.email] });
+
       navigate(from, { replace: true });
       toast.success("Login Successful");
     } catch (err) {
@@ -157,23 +175,33 @@ const Login = () => {
               >
                 Password
               </label>
-              <input
-                type="password"
-                name="password"
-                autoComplete="current-password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Enter your password"
-                className="w-full px-4 py-3 border-2 rounded-xl border-gray-200 dark:border-gray-600 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-200"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  autoComplete="current-password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Enter your password"
+                  className="w-full px-4 py-3 pr-12 border-2 rounded-xl border-gray-200 dark:border-gray-600 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-200"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
           </div>
 
           <div className="flex justify-between items-center text-sm">
             <button
               type="button"
+              onClick={() => setShowForgotPasswordModal(true)}
               className="text-indigo-600 dark:text-indigo-400 hover:underline"
             >
               Forgot password?
@@ -184,11 +212,7 @@ const Login = () => {
             type="submit"
             className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1"
           >
-            {loading ? (
-              <TbFidgetSpinner className="animate-spin m-auto text-xl" />
-            ) : (
-              "Sign In"
-            )}
+            {loading ? <BookCourierSpinner size={24} /> : "Sign In"}
           </button>
         </form>
 
@@ -219,6 +243,12 @@ const Login = () => {
           </Link>
         </p>
       </div>
+
+      {/* Forgot Password Modal */}
+      <ForgotPasswordModal
+        isOpen={showForgotPasswordModal}
+        onClose={() => setShowForgotPasswordModal(false)}
+      />
     </div>
   );
 };

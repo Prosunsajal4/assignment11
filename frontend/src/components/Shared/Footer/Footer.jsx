@@ -32,36 +32,42 @@ const Footer = () => {
     { to: "/books", label: "All Books" },
     { to: "/about", label: "About Us" },
     { to: "/contact", label: "Contact" },
+    { to: "/blog", label: "Blog" },
   ];
 
   const supportLinks = [
+    { to: "/help", label: "Help & Support" },
     { to: "/dashboard", label: "Dashboard" },
     { to: "/dashboard/my-wishlist", label: "My Wishlist" },
     { to: "/dashboard/my-orders", label: "My Orders" },
-    { to: "/dashboard/profile", label: "Profile" },
+  ];
+
+  const legalLinks = [
+    { to: "/privacy-terms", label: "Privacy Policy" },
+    { to: "/privacy-terms", label: "Terms of Service" },
   ];
 
   const socialLinks = [
     {
-      href: "https://facebook.com",
+      href: "https://www.facebook.com/SajalProsun",
       icon: FaFacebook,
       label: "Facebook",
       hoverColor: "hover:text-blue-500",
     },
     {
-      href: "https://instagram.com",
+      href: "https://www.instagram.com/prosun_mukherjee_sajal/",
       icon: FaInstagram,
       label: "Instagram",
       hoverColor: "hover:text-pink-500",
     },
     {
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/in/prosun-mukherjee-sajal",
       icon: FaLinkedin,
       label: "LinkedIn",
       hoverColor: "hover:text-blue-600",
     },
     {
-      href: "https://github.com",
+      href: "https://github.com/Prosunsajal4",
       icon: FaGithub,
       label: "GitHub",
       hoverColor: "hover:text-gray-400",
@@ -72,7 +78,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-white">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
@@ -148,6 +154,24 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Legal Links */}
+          <div>
+            <h3 className="font-bold text-lg mb-6 text-white">Legal</h3>
+            <ul className="space-y-3">
+              {legalLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.to}
+                    className="text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2"
+                  >
+                    <span className="w-1.5 h-1.5 bg-pink-500 rounded-full" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact Info */}
           <div>
             <h3 className="font-bold text-lg mb-6 text-white">Contact Us</h3>
@@ -157,10 +181,7 @@ const Footer = () => {
                   <span className="text-lg">📍</span>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">123 Book Street</p>
-                  <p className="text-gray-400 text-sm">
-                    Dhaka 1205, Bangladesh
-                  </p>
+                  <p className="text-gray-400 text-sm">Khulna, Bangladesh</p>
                 </div>
               </li>
               <li className="flex items-center gap-3">
@@ -168,10 +189,10 @@ const Footer = () => {
                   <span className="text-lg">📧</span>
                 </div>
                 <a
-                  href="mailto:info@bookcourier.com"
+                  href="mailto:prosunsajal123@gmail.com"
                   className="text-gray-400 hover:text-indigo-400 transition-colors"
                 >
-                  info@bookcourier.com
+                  prosunsajal123@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -179,10 +200,10 @@ const Footer = () => {
                   <span className="text-lg">📞</span>
                 </div>
                 <a
-                  href="tel:+8801234567890"
+                  href="tel:+8801911572117"
                   className="text-gray-400 hover:text-indigo-400 transition-colors"
                 >
-                  +880 1234-567890
+                  +8801911572117
                 </a>
               </li>
             </ul>

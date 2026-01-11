@@ -7,22 +7,18 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
   const [reviewOpen, setReviewOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const axiosSecure = useAxiosSecure();
-  const [loading, setLoading] = useState(false);
 
   const { _id, image, name, category, price, quantity, status, bookId } =
     order || {};
 
   const handleCancel = async () => {
-    setLoading(true);
     try {
       await axiosSecure.delete(`/orders/${_id}`);
       closeModal();
       if (refetch) refetch();
-    } catch (err) {
+    } catch {
       // Optionally show error
       alert("Failed to cancel order");
-    } finally {
-      setLoading(false);
     }
   };
 

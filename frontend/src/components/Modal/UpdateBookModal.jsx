@@ -21,6 +21,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
 
   useEffect(() => {
     if (book) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFormData({
         title: book?.title || "",
         author: book?.author || "",

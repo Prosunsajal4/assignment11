@@ -1,0 +1,1 @@
+import{d as s}from"./index-D-tOdqmH.js";const p=async t=>{const a=new FormData;a.append("image",t);const{data:o}=await s.post("https://api.imgbb.com/1/upload?key=2e677f6c98da3fc91ea6c3f4ade89958",a);return o?.data?.display_url},r=async t=>{const{data:a}=await s.post("http://localhost:3000/user",t);return a};export{p as i,r as s};

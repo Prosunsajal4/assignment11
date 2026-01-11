@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaUserAlt, FaDollarSign } from "react-icons/fa";
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from "react-icons/bs";
@@ -34,8 +34,36 @@ const AdminStatistics = () => {
   const [loading, setLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
 
+  // Generate mock data once
+  const [mockMonthlyData] = useState(() => [
+    {
+      name: "Jan",
+      revenue: Math.floor(Math.random() * 5000) + 1000,
+      orders: Math.floor(Math.random() * 50) + 10,
+    },
+    {
+      name: "Feb",
+      revenue: Math.floor(Math.random() * 5000) + 1000,
+      orders: Math.floor(Math.random() * 50) + 10,
+    },
+    {
+      name: "Mar",
+      revenue: Math.floor(Math.random() * 5000) + 1000,
+      orders: Math.floor(Math.random() * 50) + 10,
+    },
+    {
+      name: "Apr",
+      revenue: Math.floor(Math.random() * 5000) + 1000,
+      orders: Math.floor(Math.random() * 50) + 10,
+    },
+    {
+      name: "May",
+      revenue: Math.floor(Math.random() * 5000) + 1000,
+      orders: Math.floor(Math.random() * 50) + 10,
+    },
+  ]);
+
   useEffect(() => {
-    setLoading(true);
     Promise.all([
       axiosSecure.get("/users"),
       axiosSecure.get("/books"),
@@ -47,7 +75,7 @@ const AdminStatistics = () => {
         setOrders(ordersRes.data || []);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [axiosSecure]);
 
   // Calculate total revenue
   const totalRevenue = orders.reduce(
@@ -80,34 +108,13 @@ const AdminStatistics = () => {
   }, []);
 
   // Prepare monthly revenue data (mock for demonstration)
-  const monthlyData = [
-    {
-      name: "Jan",
-      revenue: Math.floor(Math.random() * 5000) + 1000,
-      orders: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Feb",
-      revenue: Math.floor(Math.random() * 5000) + 1000,
-      orders: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Mar",
-      revenue: Math.floor(Math.random() * 5000) + 1000,
-      orders: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "Apr",
-      revenue: Math.floor(Math.random() * 5000) + 1000,
-      orders: Math.floor(Math.random() * 50) + 10,
-    },
-    {
-      name: "May",
-      revenue: Math.floor(Math.random() * 5000) + 1000,
-      orders: Math.floor(Math.random() * 50) + 10,
-    },
-    { name: "Jun", revenue: totalRevenue, orders: orders.length },
-  ];
+  const monthlyData = useMemo(
+    () => [
+      ...mockMonthlyData,
+      { name: "Jun", revenue: totalRevenue, orders: orders.length },
+    ],
+    [mockMonthlyData, totalRevenue, orders.length]
+  );
 
   if (loading)
     return (

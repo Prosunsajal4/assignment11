@@ -1,14 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Container from "../../components/Shared/Container";
-import { useNavigate } from "react-router-dom";
-import { useState, useMemo } from "react";
+import {
+  useState,
+  useMemo,
+  useDeferredValue,
+  useTransition,
+  useCallback,
+} from "react";
 import { BookGridSkeleton } from "../../components/Shared/Skeleton/Skeleton";
+import BookCard from "../../components/Shared/BookCard";
 
 const ITEMS_PER_PAGE = 9;
 
 const Books = () => {
-  const navigate = useNavigate();
   const { data: books = [], isLoading } = useQuery({
     queryKey: ["books"],
     queryFn: async () => {
@@ -22,16 +27,22 @@ const Books = () => {
   const [category, setCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Modern React: useDeferredValue for search to prevent blocking UI
+  const deferredSearch = useDeferredValue(search);
+
+  // Modern React: useTransition for non-urgent updates
+  const [isPending, startTransition] = useTransition();
+
   // Get unique categories
   const categories = useMemo(() => {
     const cats = [...new Set(books.map((b) => b.category))];
     return cats.filter(Boolean);
   }, [books]);
 
-  // Filter and sort books
+  // Filter and sort books - using deferred search for better performance
   const filteredBooks = useMemo(() => {
     let filtered = books.filter((b) =>
-      b.name.toLowerCase().includes(search.toLowerCase())
+      b.name.toLowerCase().includes(deferredSearch.toLowerCase())
     );
     if (category) {
       filtered = filtered.filter((b) => b.category === category);
@@ -44,7 +55,7 @@ const Books = () => {
       filtered = [...filtered].reverse();
     }
     return filtered;
-  }, [books, search, sort, category]);
+  }, [books, deferredSearch, sort, category]);
 
   // Pagination
   const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE);
@@ -53,11 +64,38 @@ const Books = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  // Reset to page 1 when filters change
-  const handleFilterChange = (setter) => (value) => {
-    setter(value);
-    setCurrentPage(1);
-  };
+  // Modern React: useCallback for event handlers to prevent unnecessary re-renders
+  const handleFilterChange = useCallback(
+    (setter) => (value) => {
+      startTransition(() => {
+        setter(value);
+        setCurrentPage(1);
+      });
+    },
+    []
+  );
+
+  const handleSearchChange = useCallback((value) => {
+    setSearch(value);
+    startTransition(() => {
+      setCurrentPage(1);
+    });
+  }, []);
+
+  const handlePageChange = useCallback((page) => {
+    startTransition(() => {
+      setCurrentPage(page);
+    });
+  }, []);
+
+  const handleClearFilters = useCallback(() => {
+    startTransition(() => {
+      setSearch("");
+      setCategory("");
+      setSort("");
+      setCurrentPage(1);
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
@@ -103,9 +141,15 @@ const Books = () => {
                 type="text"
                 placeholder="Search books by name..."
                 value={search}
-                onChange={(e) => handleFilterChange(setSearch)(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white transition-all duration-200"
               />
+              {/* Modern: Show loading indicator when search is being deferred */}
+              {isPending && (
+                <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
+                  <div className="w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
             </div>
 
             {/* Category Filter */}
@@ -116,6 +160,7 @@ const Books = () => {
                   handleFilterChange(setCategory)(e.target.value)
                 }
                 className="w-full appearance-none pl-4 pr-10 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white transition-all duration-200 cursor-pointer"
+                disabled={isPending}
               >
                 <option value="">All Categories</option>
                 {categories.map((cat) => (
@@ -147,6 +192,7 @@ const Books = () => {
                 value={sort}
                 onChange={(e) => handleFilterChange(setSort)(e.target.value)}
                 className="w-full appearance-none pl-4 pr-10 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white transition-all duration-200 cursor-pointer"
+                disabled={isPending}
               >
                 <option value="">Sort by</option>
                 <option value="newest">Newest First</option>
@@ -183,13 +229,9 @@ const Books = () => {
             </span>
             {(search || category || sort) && (
               <button
-                onClick={() => {
-                  setSearch("");
-                  setCategory("");
-                  setSort("");
-                  setCurrentPage(1);
-                }}
-                className="flex items-center gap-1 text-indigo-600 hover:text-indigo-700 font-medium"
+                onClick={handleClearFilters}
+                disabled={isPending}
+                className="flex items-center gap-1 text-indigo-600 hover:text-indigo-700 font-medium disabled:opacity-50"
               >
                 <svg
                   className="w-4 h-4"
@@ -223,134 +265,17 @@ const Books = () => {
               Try adjusting your search or filter criteria
             </p>
             <button
-              onClick={() => {
-                setSearch("");
-                setCategory("");
-                setSort("");
-              }}
-              className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition-colors"
+              onClick={handleClearFilters}
+              disabled={isPending}
+              className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition-colors disabled:opacity-50"
             >
               Reset Filters
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {paginatedBooks.map((book) => (
-              <div
-                key={book._id}
-                className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
-              >
-                {/* Image Container */}
-                <div className="relative h-72 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                  <img
-                    src={book.image}
-                    alt={book.name}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                  />
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-indigo-600">
-                      {book.category}
-                    </span>
-                  </div>
-                  {/* Price Badge */}
-                  <div className="absolute top-4 right-4 z-20">
-                    <span className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full text-sm font-bold text-white shadow-lg">
-                      ${book.price}
-                    </span>
-                  </div>
-                  {/* Stock Status */}
-                  <div className="absolute bottom-4 left-4 z-20">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        book.quantity > 5
-                          ? "bg-green-100 text-green-700"
-                          : book.quantity > 0
-                          ? "bg-yellow-100 text-yellow-700"
-                          : "bg-red-100 text-red-700"
-                      }`}
-                    >
-                      {book.quantity > 0
-                        ? `${book.quantity} in stock`
-                        : "Out of stock"}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="font-bold text-xl text-gray-800 mb-2 line-clamp-1 group-hover:text-indigo-600 transition-colors">
-                    {book.name}
-                  </h3>
-                  <p className="text-gray-500 text-sm line-clamp-2 mb-4">
-                    {book.description ||
-                      "Discover an amazing reading experience with this carefully selected book."}
-                  </p>
-
-                  {/* Seller Info */}
-                  {book.seller && (
-                    <div className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100">
-                      <img
-                        src={
-                          book.seller.image || "https://via.placeholder.com/32"
-                        }
-                        alt={book.seller.name}
-                        className="w-8 h-8 rounded-full object-cover ring-2 ring-gray-100"
-                      />
-                      <div>
-                        <span className="text-sm text-gray-700 font-medium">
-                          {book.seller.name || "Unknown"}
-                        </span>
-                        <span className="flex items-center gap-1 text-xs text-green-600">
-                          <svg
-                            className="w-3 h-3"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          Verified
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Action Button */}
-                  <button
-                    onClick={() => navigate(`/book/${book._id}`)}
-                    className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                      />
-                    </svg>
-                    View Details
-                  </button>
-                </div>
-
-                {/* Hover Border Effect */}
-                <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-indigo-500/30 transition-colors duration-300 pointer-events-none" />
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+            {paginatedBooks.map((book, index) => (
+              <BookCard key={book._id} book={book} index={index} />
             ))}
           </div>
         )}
@@ -359,8 +284,8 @@ const Books = () => {
         {totalPages > 1 && (
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
+              onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1 || isPending}
               className="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 rounded-xl font-medium text-gray-700 hover:border-indigo-500 hover:text-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
             >
               <svg
@@ -391,8 +316,9 @@ const Books = () => {
                     return (
                       <button
                         key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`w-10 h-10 rounded-xl font-medium transition-all duration-200 ${
+                        onClick={() => handlePageChange(page)}
+                        disabled={isPending}
+                        className={`w-10 h-10 rounded-xl font-medium transition-all duration-200 disabled:opacity-50 ${
                           currentPage === page
                             ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30"
                             : "bg-white border-2 border-gray-200 text-gray-700 hover:border-indigo-500 hover:text-indigo-600"
@@ -417,8 +343,10 @@ const Books = () => {
             </div>
 
             <button
-              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages}
+              onClick={() =>
+                handlePageChange(Math.min(totalPages, currentPage + 1))
+              }
+              disabled={currentPage === totalPages || isPending}
               className="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 rounded-xl font-medium text-gray-700 hover:border-indigo-500 hover:text-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
             >
               Next

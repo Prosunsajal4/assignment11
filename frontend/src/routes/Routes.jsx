@@ -1,28 +1,55 @@
-import Home from "../pages/Home/Home";
-import ErrorPage from "../pages/ErrorPage";
-import Login from "../pages/Login/Login";
-import SignUp from "../pages/SignUp/SignUp";
-import PrivateRoute from "./PrivateRoute";
-import BookDetails from "../pages/bookDetails/bookDetails";
-import DashboardLayout from "../layouts/DashboardLayout";
-import Addbook from "../pages/Dashboard/Seller/Addbook";
-import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
-import Profile from "../pages/Dashboard/Common/Profile";
-import Statistics from "../pages/Dashboard/Common/Statistics";
-import MainLayout from "../layouts/MainLayout";
-import MyInventory from "../pages/Dashboard/Seller/MyInventory";
-import ManageOrders from "../pages/Dashboard/Seller/ManageOrders";
-import MyOrders from "../pages/Dashboard/Customer/MyOrders";
+/* eslint-disable react-refresh/only-export-components */
+
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router";
-import PaymentSuccess from "../pages/Payment/PaymentSuccess";
-import SellerRequests from "../pages/Dashboard/Admin/SellerRequests";
+import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 import AdminRoute from "./AdminRoute";
-import MyWishlist from "../pages/Dashboard/MyWishlist";
-import Books from "../pages/Books/Books";
-import ManageAllOrders from "../pages/Dashboard/Admin/ManageAllOrders";
-import About from "../pages/About/About";
-import Contact from "../pages/Contact/Contact";
+import BookCourierSpinner from "../components/Shared/BookCourierSpinner";
+
+// Modern: Lazy load all components for route-based code splitting
+const Home = lazy(() => import("../pages/Home/Home"));
+const ErrorPage = lazy(() => import("../pages/ErrorPage"));
+const Login = lazy(() => import("../pages/Login/Login"));
+const SignUp = lazy(() => import("../pages/SignUp/SignUp"));
+const BookDetails = lazy(() => import("../pages/bookDetails/bookDetails"));
+const DashboardLayout = lazy(() => import("../layouts/DashboardLayout"));
+const Addbook = lazy(() => import("../pages/Dashboard/Seller/Addbook"));
+const ManageUsers = lazy(() => import("../pages/Dashboard/Admin/ManageUsers"));
+const Profile = lazy(() => import("../pages/Dashboard/Common/Profile"));
+const Statistics = lazy(() => import("../pages/Dashboard/Common/Statistics"));
+const MainLayout = lazy(() => import("../layouts/MainLayout"));
+const MyInventory = lazy(() => import("../pages/Dashboard/Seller/MyInventory"));
+const ManageOrders = lazy(() =>
+  import("../pages/Dashboard/Seller/ManageOrders")
+);
+const MyOrders = lazy(() => import("../pages/Dashboard/Customer/MyOrders"));
+const PaymentSuccess = lazy(() => import("../pages/Payment/PaymentSuccess"));
+const SellerRequests = lazy(() =>
+  import("../pages/Dashboard/Admin/SellerRequests")
+);
+const MyWishlist = lazy(() => import("../pages/Dashboard/MyWishlist"));
+const Books = lazy(() => import("../pages/Books/Books"));
+const ManageAllOrders = lazy(() =>
+  import("../pages/Dashboard/Admin/ManageAllOrders")
+);
+const About = lazy(() => import("../pages/About/About"));
+const Contact = lazy(() => import("../pages/Contact/Contact"));
+const Blog = lazy(() => import("../pages/Blog/Blog"));
+const HelpSupport = lazy(() => import("../pages/HelpSupport/HelpSupport"));
+const PrivacyTerms = lazy(() => import("../pages/PrivacyTerms/PrivacyTerms"));
+
+// Modern: Loading component for route suspense
+const RouteLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="text-center">
+      <BookCourierSpinner size={64} />
+      <p className="text-gray-600 dark:text-gray-400 font-medium mt-4">
+        Loading page...
+      </p>
+    </div>
+  </div>
+);
 
 export const router = createBrowserRouter([
   {
@@ -32,37 +59,101 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "/book/:id",
-        element: <BookDetails />,
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <BookDetails />
+          </Suspense>
+        ),
       },
       {
         path: "/books",
-        element: <Books />,
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Books />
+          </Suspense>
+        ),
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Contact />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/blog",
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Blog />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/help",
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <HelpSupport />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/privacy-terms",
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <PrivacyTerms />
+          </Suspense>
+        ),
       },
       {
         path: "/payment-success",
-        element: <PaymentSuccess />,
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <PaymentSuccess />
+          </Suspense>
+        ),
       },
     ],
   },
-  { path: "/login", element: <Login /> },
-  { path: "/signup", element: <SignUp /> },
+  {
+    path: "/login",
+    element: (
+      <Suspense fallback={<RouteLoader />}>
+        <Login />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/signup",
+    element: (
+      <Suspense fallback={<RouteLoader />}>
+        <SignUp />
+      </Suspense>
+    ),
+  },
   {
     path: "/dashboard",
     element: (
       <PrivateRoute>
-        <DashboardLayout />
+        <Suspense fallback={<RouteLoader />}>
+          <DashboardLayout />
+        </Suspense>
       </PrivateRoute>
     ),
     children: [
@@ -70,7 +161,9 @@ export const router = createBrowserRouter([
         index: true,
         element: (
           <PrivateRoute>
-            <Statistics />
+            <Suspense fallback={<RouteLoader />}>
+              <Statistics />
+            </Suspense>
           </PrivateRoute>
         ),
       },
@@ -79,7 +172,9 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <SellerRoute>
-              <Addbook />
+              <Suspense fallback={<RouteLoader />}>
+                <Addbook />
+              </Suspense>
             </SellerRoute>
           </PrivateRoute>
         ),
@@ -89,7 +184,9 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <SellerRoute>
-              <MyInventory />
+              <Suspense fallback={<RouteLoader />}>
+                <MyInventory />
+              </Suspense>
             </SellerRoute>
           </PrivateRoute>
         ),
@@ -99,7 +196,9 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <ManageUsers />
+              <Suspense fallback={<RouteLoader />}>
+                <ManageUsers />
+              </Suspense>
             </AdminRoute>
           </PrivateRoute>
         ),
@@ -109,7 +208,9 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <SellerRequests />
+              <Suspense fallback={<RouteLoader />}>
+                <SellerRequests />
+              </Suspense>
             </AdminRoute>
           </PrivateRoute>
         ),
@@ -119,7 +220,9 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminRoute>
-              <ManageAllOrders />
+              <Suspense fallback={<RouteLoader />}>
+                <ManageAllOrders />
+              </Suspense>
             </AdminRoute>
           </PrivateRoute>
         ),
@@ -128,7 +231,9 @@ export const router = createBrowserRouter([
         path: "profile",
         element: (
           <PrivateRoute>
-            <Profile />
+            <Suspense fallback={<RouteLoader />}>
+              <Profile />
+            </Suspense>
           </PrivateRoute>
         ),
       },
@@ -136,7 +241,9 @@ export const router = createBrowserRouter([
         path: "my-orders",
         element: (
           <PrivateRoute>
-            <MyOrders />
+            <Suspense fallback={<RouteLoader />}>
+              <MyOrders />
+            </Suspense>
           </PrivateRoute>
         ),
       },
@@ -145,7 +252,9 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <SellerRoute>
-              <ManageOrders />
+              <Suspense fallback={<RouteLoader />}>
+                <ManageOrders />
+              </Suspense>
             </SellerRoute>
           </PrivateRoute>
         ),
@@ -154,7 +263,9 @@ export const router = createBrowserRouter([
         path: "my-wishlist",
         element: (
           <PrivateRoute>
-            <MyWishlist />
+            <Suspense fallback={<RouteLoader />}>
+              <MyWishlist />
+            </Suspense>
           </PrivateRoute>
         ),
       },
