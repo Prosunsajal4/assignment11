@@ -1,4 +1,4 @@
-import { Link, Navigate, useLocation, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import BookCourierSpinner from "../../components/Shared/BookCourierSpinner";
 import useAuth from "../../hooks/useAuth";

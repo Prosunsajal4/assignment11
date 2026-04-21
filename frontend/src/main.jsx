@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { router } from "./routes/Routes.jsx";
-import { RouterProvider } from "react-router";
+import { RouterProvider } from "react-router-dom";
 import AuthProvider from "./providers/AuthProvider.jsx";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -20,7 +20,7 @@ if ("serviceWorker" in navigator) {
       .then((registration) => {
         console.log(
           "Service Worker registered successfully:",
-          registration.scope
+          registration.scope,
         );
 
         // Modern: Handle updates
@@ -35,7 +35,7 @@ if ("serviceWorker" in navigator) {
                 // New content is available, notify user
                 if (
                   confirm(
-                    "New content is available! Reload to get the latest version?"
+                    "New content is available! Reload to get the latest version?",
                   )
                 ) {
                   window.location.reload();
@@ -63,5 +63,5 @@ createRoot(document.getElementById("root")).render(
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ModernErrorBoundary>
-  </StrictMode>
+  </StrictMode>,
 );

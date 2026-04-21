@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuth from "./useAuth";
 
@@ -24,7 +24,7 @@ const useAxiosSecure = () => {
             console.error("Error getting ID token:", error);
           }
           return config;
-        }
+        },
       );
 
       // Add response interceptor
@@ -40,7 +40,7 @@ const useAxiosSecure = () => {
             navigate("/login");
           }
           return Promise.reject(err);
-        }
+        },
       );
 
       // Cleanup to prevent multiple interceptors on re-renders

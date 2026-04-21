@@ -1,4 +1,4 @@
-import { Navigate } from "react-router";
+import { Navigate } from "react-router-dom";
 import BookCourierSpinner from "../components/Shared/BookCourierSpinner";
 import useRole from "../hooks/useRole";
 

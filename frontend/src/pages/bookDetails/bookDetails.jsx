@@ -3,7 +3,7 @@ import PurchaseModal from "../../components/Modal/PurchaseModal";
 import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import BookCourierSpinner from "../../components/Shared/BookCourierSpinner";

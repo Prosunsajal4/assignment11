@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 
 import { lazy, Suspense } from "react";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 import AdminRoute from "./AdminRoute";
@@ -20,18 +20,18 @@ const Profile = lazy(() => import("../pages/Dashboard/Common/Profile"));
 const Statistics = lazy(() => import("../pages/Dashboard/Common/Statistics"));
 const MainLayout = lazy(() => import("../layouts/MainLayout"));
 const MyInventory = lazy(() => import("../pages/Dashboard/Seller/MyInventory"));
-const ManageOrders = lazy(() =>
-  import("../pages/Dashboard/Seller/ManageOrders")
+const ManageOrders = lazy(
+  () => import("../pages/Dashboard/Seller/ManageOrders"),
 );
 const MyOrders = lazy(() => import("../pages/Dashboard/Customer/MyOrders"));
 const PaymentSuccess = lazy(() => import("../pages/Payment/PaymentSuccess"));
-const SellerRequests = lazy(() =>
-  import("../pages/Dashboard/Admin/SellerRequests")
+const SellerRequests = lazy(
+  () => import("../pages/Dashboard/Admin/SellerRequests"),
 );
 const MyWishlist = lazy(() => import("../pages/Dashboard/MyWishlist"));
 const Books = lazy(() => import("../pages/Books/Books"));
-const ManageAllOrders = lazy(() =>
-  import("../pages/Dashboard/Admin/ManageAllOrders")
+const ManageAllOrders = lazy(
+  () => import("../pages/Dashboard/Admin/ManageAllOrders"),
 );
 const About = lazy(() => import("../pages/About/About"));
 const Contact = lazy(() => import("../pages/Contact/Contact"));
