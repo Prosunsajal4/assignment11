@@ -1,8 +1,8 @@
 import SellerOrderDataRow from "../../../components/Dashboard/TableRows/SellerOrderDataRow";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import BookCourierSpinner from "../../../components/Shared/BookCourierSpinner";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const ManageOrders = () => {
   const { user } = useAuth();

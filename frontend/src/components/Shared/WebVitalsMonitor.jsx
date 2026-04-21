@@ -9,9 +9,9 @@ const WebVitalsMonitor = () => {
   useEffect(() => {
     // Modern: Dynamic import for web-vitals to reduce bundle size
     import("web-vitals")
-      .then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      .then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
         // Core Web Vitals
-        getCLS((metric) => {
+        onCLS((metric) => {
           console.log("CLS:", metric);
           setMetrics((prev) => ({ ...prev, cls: metric }));
           // Send to analytics in production
@@ -20,7 +20,7 @@ const WebVitalsMonitor = () => {
           }
         });
 
-        getFID((metric) => {
+        onFID((metric) => {
           console.log("FID:", metric);
           setMetrics((prev) => ({ ...prev, fid: metric }));
           if (import.meta.env.MODE === "production") {
@@ -28,7 +28,7 @@ const WebVitalsMonitor = () => {
           }
         });
 
-        getFCP((metric) => {
+        onFCP((metric) => {
           console.log("FCP:", metric);
           setMetrics((prev) => ({ ...prev, fcp: metric }));
           if (import.meta.env.MODE === "production") {
@@ -36,7 +36,7 @@ const WebVitalsMonitor = () => {
           }
         });
 
-        getLCP((metric) => {
+        onLCP((metric) => {
           console.log("LCP:", metric);
           setMetrics((prev) => ({ ...prev, lcp: metric }));
           if (import.meta.env.MODE === "production") {
@@ -44,7 +44,7 @@ const WebVitalsMonitor = () => {
           }
         });
 
-        getTTFB((metric) => {
+        onTTFB((metric) => {
           console.log("TTFB:", metric);
           setMetrics((prev) => ({ ...prev, ttfb: metric }));
           if (import.meta.env.MODE === "production") {

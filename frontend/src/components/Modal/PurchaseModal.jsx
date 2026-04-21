@@ -32,7 +32,7 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
         headers: {
           Authorization: `Bearer ${user?.accessToken}`,
         },
-      }
+      },
     );
     window.location.href = data.url;
   };
@@ -58,17 +58,17 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
           >
             {/* Header with gradient */}
             <div className="relative mb-6">
-              <div className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full opacity-20 blur-xl" />
+              <div className="absolute -top-4 -left-4 w-20 h-20 bg-linear-to-br from-indigo-500 to-purple-600 rounded-full opacity-20 blur-xl" />
               <DialogTitle
                 as="h3"
-                className="text-2xl font-bold text-center bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+                className="text-2xl font-bold text-center bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
               >
                 📚 Confirm Purchase
               </DialogTitle>
             </div>
 
             {/* Book Preview Card */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 mb-6 border border-gray-200/50">
+            <div className="bg-linear-to-br from-gray-50 to-gray-100 rounded-2xl p-4 mb-6 border border-gray-200/50">
               <div className="flex items-start gap-4">
                 {image && (
                   <img
@@ -137,7 +137,7 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200/50">
+              <div className="flex items-center justify-between p-4 bg-linear-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200/50">
                 <span className="text-green-700 font-medium flex items-center gap-2">
                   <svg
                     className="w-5 h-5"
@@ -173,7 +173,7 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
                 onClick={handlePayment}
                 disabled={loading}
                 type="button"
-                className="flex-1 py-3 px-4 rounded-xl font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-500/30 transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex-1 py-3 px-4 rounded-xl font-medium text-white bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg shadow-indigo-500/30 transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>

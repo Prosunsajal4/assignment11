@@ -33,12 +33,12 @@ const Newsletter = () => {
           <div className="grid md:grid-cols-2 items-center">
             {/* Left Side - Content */}
             <div className="p-8 md:p-12">
-              <span className="inline-block px-4 py-2 bg-gradient-to-r from-rose-100 to-pink-100 dark:from-rose-900/50 dark:to-pink-900/50 text-rose-700 dark:text-rose-300 text-sm font-semibold rounded-full mb-4">
+              <span className="inline-block px-4 py-2 bg-linear-to-r from-rose-100 to-pink-100 dark:from-rose-900/50 dark:to-pink-900/50 text-rose-700 dark:text-rose-300 text-sm font-semibold rounded-full mb-4">
                 📬 Stay Updated
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">
                 Subscribe to Our{" "}
-                <span className="bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
                   Newsletter
                 </span>
               </h2>
@@ -60,7 +60,7 @@ const Newsletter = () => {
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="px-6 py-2 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-rose-500/30 transition-all duration-300 disabled:opacity-50"
+                      className="px-6 py-2 bg-linear-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-rose-500/30 transition-all duration-300 disabled:opacity-50"
                     >
                       {isLoading ? (
                         <svg
@@ -91,7 +91,7 @@ const Newsletter = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full md:hidden px-6 py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-rose-500/30 transition-all duration-300 disabled:opacity-50"
+                  className="w-full md:hidden px-6 py-4 bg-linear-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-rose-500/30 transition-all duration-300 disabled:opacity-50"
                 >
                   {isLoading ? "Subscribing..." : "Subscribe Now"}
                 </button>
@@ -103,7 +103,7 @@ const Newsletter = () => {
             </div>
 
             {/* Right Side - Illustration */}
-            <div className="hidden md:block h-full bg-gradient-to-br from-rose-500 to-pink-600 p-12 relative">
+            <div className="hidden md:block h-full bg-linear-to-br from-rose-500 to-pink-600 p-12 relative">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center text-white">
                   <div className="text-8xl mb-4">📖</div>

@@ -82,7 +82,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <div className="w-12 h-12 bg-linear-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center">
                 <FaBook className="text-2xl text-white" />
               </div>
               <span className="font-bold text-2xl">
@@ -101,7 +101,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className={`w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center transition-all duration-300 ${social.hoverColor} hover:bg-gray-700`}
+                  className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${social.hoverColor} hover:bg-gray-700`}
                 >
                   <social.icon className="text-lg" />
                 </a>
@@ -177,7 +177,7 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-6 text-white">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center shrink-0">
                   <span className="text-lg">📍</span>
                 </div>
                 <div>
@@ -185,7 +185,7 @@ const Footer = () => {
                 </div>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center shrink-0">
                   <span className="text-lg">📧</span>
                 </div>
                 <a
@@ -196,7 +196,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center shrink-0">
                   <span className="text-lg">📞</span>
                 </div>
                 <a

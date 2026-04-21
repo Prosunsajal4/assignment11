@@ -55,7 +55,7 @@ const StatisticsCounter = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     const section = document.getElementById("stats-section");
@@ -67,7 +67,7 @@ const StatisticsCounter = () => {
   return (
     <section
       id="stats-section"
-      className="py-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 relative overflow-hidden"
+      className="py-20 bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 relative overflow-hidden"
     >
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -81,7 +81,7 @@ const StatisticsCounter = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Our Journey in{" "}
-            <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
               Numbers
             </span>
           </h2>

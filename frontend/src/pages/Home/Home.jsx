@@ -1,29 +1,33 @@
 import { lazy, Suspense } from "react";
+import { motion } from "framer-motion";
 import BookCourierSpinner from "../../components/Shared/BookCourierSpinner";
+import Hero from "../../components/Home/Hero";
 
-// Modern: Lazy load components for better performance
+
 const LatestBooks = lazy(() => import("../../components/Home/LatestBooks"));
-const Slider = lazy(() => import("../../components/Shared/Slider/Slider"));
 const CoverageMap = lazy(() => import("../../components/Home/CoverageMap"));
-const WhyChooseBookCourier = lazy(() =>
-  import("../../components/Home/WhyChooseBookCourier")
+const WhyChooseBookCourier = lazy(
+  () => import("../../components/Home/WhyChooseBookCourier"),
 );
-const ExtraSectionOne = lazy(() =>
-  import("../../components/Home/ExtraSectionOne")
+const ExtraSectionOne = lazy(
+  () => import("../../components/Home/ExtraSectionOne"),
 );
-const ExtraSectionTwo = lazy(() =>
-  import("../../components/Home/ExtraSectionTwo")
+const ExtraSectionTwo = lazy(
+  () => import("../../components/Home/ExtraSectionTwo"),
 );
 const Testimonials = lazy(() => import("../../components/Home/Testimonials"));
 const FAQ = lazy(() => import("../../components/Home/FAQ"));
-const StatisticsCounter = lazy(() =>
-  import("../../components/Home/StatisticsCounter")
+const StatisticsCounter = lazy(
+  () => import("../../components/Home/StatisticsCounter"),
 );
 const Newsletter = lazy(() => import("../../components/Home/Newsletter"));
-const FeaturedAuthors = lazy(() =>
-  import("../../components/Home/FeaturedAuthors")
+const FeaturedAuthors = lazy(
+  () => import("../../components/Home/FeaturedAuthors"),
 );
 const Categories = lazy(() => import("../../components/Home/Categories"));
+const RecentlyViewedBooks = lazy(
+  () => import("../../components/Home/RecentlyViewedBooks"),
+);
 
 // Modern: Loading component for Suspense fallback
 const ComponentLoader = ({ componentName }) => (
@@ -37,102 +41,100 @@ const ComponentLoader = ({ componentName }) => (
   </div>
 );
 
+// Section wrapper with animation - simplified for smoothness
+const AnimatedSection = ({ children, className = "" }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.4, ease: "easeOut" }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
 const Home = () => {
-  const heroSlides = [
-    {
-      bg: "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600",
-      title: "Discover Your Next Favorite Book",
-      subtitle:
-        "Curated picks, fast delivery, and exclusive deals for readers.",
-      cta: { href: "/books", label: "Explore Collections" },
-    },
-    {
-      bg: "bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600",
-      title: "Fresh Reads, Delivered Quickly",
-      subtitle: "From bestsellers to hidden gems—add to wishlist instantly.",
-      cta: { href: "/dashboard/my-wishlist", label: "View Wishlist" },
-    },
-    {
-      bg: "bg-gradient-to-r from-amber-600 via-orange-600 to-red-600",
-      title: "Support Local Sellers",
-      subtitle: "Great books from trusted sellers in your community.",
-      cta: { href: "/dashboard/seller/add-book", label: "Sell a Book" },
-    },
-  ];
-
   return (
-    <div className="overflow-hidden">
-      {/* Hero Slider - 60-70% viewport height */}
-      <div className="h-[60vh] md:h-[70vh]">
-        <Suspense fallback={<ComponentLoader componentName="Hero Slider" />}>
-          <Slider slides={heroSlides} interval={5000} />
-        </Suspense>
-      </div>
+    <div className="overflow-x-hidden">
+      {/* 1. Hero Section - Full Screen */}
+      <Hero />
 
-      {/* 1. Latest Books */}
-      <section className="py-16">
+      {/* 2. Browse by Category - Quick Access */}
+      <AnimatedSection className="py-20 bg-white dark:bg-gray-900">
+        <Suspense fallback={<ComponentLoader componentName="Categories" />}>
+          <Categories />
+        </Suspense>
+      </AnimatedSection>
+
+      {/* 3. Latest Books - Featured Collection */}
+      <AnimatedSection className="py-20 bg-gray-50 dark:bg-gray-800">
         <Suspense fallback={<ComponentLoader componentName="Latest Books" />}>
           <LatestBooks />
         </Suspense>
-      </section>
+      </AnimatedSection>
 
-      {/* 2. Browse by Category */}
-      <Suspense fallback={<ComponentLoader componentName="Categories" />}>
-        <Categories />
-      </Suspense>
+      {/* 4. Personal Recommendations removed (AI feature) */}
 
-      {/* 3. Statistics Counter */}
-      <Suspense fallback={<ComponentLoader componentName="Statistics" />}>
-        <StatisticsCounter />
-      </Suspense>
+      {/* 5. Recently Viewed - User History */}
+      <AnimatedSection className="py-16 bg-white dark:bg-gray-900">
+        <Suspense
+          fallback={<ComponentLoader componentName="Recently Viewed" />}
+        >
+          <RecentlyViewedBooks />
+        </Suspense>
+      </AnimatedSection>
 
-      {/* 4. Why Choose BookCourier */}
-      <section className="py-16">
+      {/* 6. Statistics Counter - Trust Indicators */}
+      <AnimatedSection className="py-20 bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600">
+        <Suspense fallback={<ComponentLoader componentName="Statistics" />}>
+          <StatisticsCounter />
+        </Suspense>
+      </AnimatedSection>
+
+      {/* 7. Why Choose BookCourier - Value Proposition */}
+      <AnimatedSection className="py-20 bg-white dark:bg-gray-900">
         <Suspense fallback={<ComponentLoader componentName="Why Choose Us" />}>
           <WhyChooseBookCourier />
         </Suspense>
-      </section>
+      </AnimatedSection>
 
-      {/* 5. Featured Authors */}
-      <Suspense fallback={<ComponentLoader componentName="Featured Authors" />}>
-        <FeaturedAuthors />
-      </Suspense>
+      {/* 8. Featured Authors - Community Highlight */}
+      <AnimatedSection className="py-20 bg-gray-50 dark:bg-gray-800">
+        <Suspense
+          fallback={<ComponentLoader componentName="Featured Authors" />}
+        >
+          <FeaturedAuthors />
+        </Suspense>
+      </AnimatedSection>
 
-      {/* 6. Coverage Map */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      {/* 9. Testimonials - Social Proof */}
+      <AnimatedSection className="py-20 bg-white dark:bg-gray-900">
+        <Suspense fallback={<ComponentLoader componentName="Testimonials" />}>
+          <Testimonials />
+        </Suspense>
+      </AnimatedSection>
+
+      {/* 10. Coverage Map - Service Area */}
+      <AnimatedSection className="py-20 bg-gray-50 dark:bg-gray-800">
         <Suspense fallback={<ComponentLoader componentName="Coverage Map" />}>
           <CoverageMap />
         </Suspense>
-      </section>
+      </AnimatedSection>
 
-      {/* 7. Testimonials */}
-      <Suspense fallback={<ComponentLoader componentName="Testimonials" />}>
-        <Testimonials />
-      </Suspense>
-
-      {/* 8. Extra Section One (Reading Tips) */}
-      <section className="py-16">
-        <Suspense fallback={<ComponentLoader componentName="Reading Tips" />}>
-          <ExtraSectionOne />
+      {/* 11. FAQ - Common Questions */}
+      <AnimatedSection className="py-20 bg-white dark:bg-gray-900">
+        <Suspense fallback={<ComponentLoader componentName="FAQ" />}>
+          <FAQ />
         </Suspense>
-      </section>
+      </AnimatedSection>
 
-      {/* 9. FAQ */}
-      <Suspense fallback={<ComponentLoader componentName="FAQ" />}>
-        <FAQ />
-      </Suspense>
-
-      {/* 10. Extra Section Two (Best Sellers) */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
-        <Suspense fallback={<ComponentLoader componentName="Best Sellers" />}>
-          <ExtraSectionTwo />
+      {/* 12. Newsletter - CTA Section */}
+      <AnimatedSection className="py-20 bg-linear-to-br from-gray-900 via-gray-800 to-gray-900">
+        <Suspense fallback={<ComponentLoader componentName="Newsletter" />}>
+          <Newsletter />
         </Suspense>
-      </section>
-
-      {/* 11. Newsletter */}
-      <Suspense fallback={<ComponentLoader componentName="Newsletter" />}>
-        <Newsletter />
-      </Suspense>
+      </AnimatedSection>
     </div>
   );
 };

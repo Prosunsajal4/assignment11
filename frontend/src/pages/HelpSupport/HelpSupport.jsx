@@ -139,7 +139,7 @@ const HelpSupport = () => {
                         {faq.question}
                       </h3>
                       <svg
-                        className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0"
+                        className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform duration-200 shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"

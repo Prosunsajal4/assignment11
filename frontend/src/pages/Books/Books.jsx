@@ -42,7 +42,7 @@ const Books = () => {
   // Filter and sort books - using deferred search for better performance
   const filteredBooks = useMemo(() => {
     let filtered = books.filter((b) =>
-      b.name.toLowerCase().includes(deferredSearch.toLowerCase())
+      b.name.toLowerCase().includes(deferredSearch.toLowerCase()),
     );
     if (category) {
       filtered = filtered.filter((b) => b.category === category);
@@ -61,7 +61,7 @@ const Books = () => {
   const totalPages = Math.ceil(filteredBooks.length / ITEMS_PER_PAGE);
   const paginatedBooks = filteredBooks.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
 
   // Modern React: useCallback for event handlers to prevent unnecessary re-renders
@@ -72,7 +72,7 @@ const Books = () => {
         setCurrentPage(1);
       });
     },
-    []
+    [],
   );
 
   const handleSearchChange = useCallback((value) => {
@@ -98,16 +98,16 @@ const Books = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
       <Container>
         {/* Page Header */}
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-linear-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
             📖 Browse Collection
           </span>
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
             All{" "}
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Books
             </span>
           </h1>
@@ -320,7 +320,7 @@ const Books = () => {
                         disabled={isPending}
                         className={`w-10 h-10 rounded-xl font-medium transition-all duration-200 disabled:opacity-50 ${
                           currentPage === page
-                            ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30"
+                            ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30"
                             : "bg-white border-2 border-gray-200 text-gray-700 hover:border-indigo-500 hover:text-indigo-600"
                         }`}
                       >
@@ -338,7 +338,7 @@ const Books = () => {
                     );
                   }
                   return null;
-                }
+                },
               )}
             </div>
 

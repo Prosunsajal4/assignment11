@@ -22,7 +22,7 @@ const LatestBooks = () => {
 
   // Filter books by search
   let filteredBooks = books.filter((book) =>
-    book.name.toLowerCase().includes(search.toLowerCase())
+    book.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   // Sort books by price
@@ -44,7 +44,7 @@ const LatestBooks = () => {
         </span>
         <h2 className="text-4xl font-bold text-gray-800 mb-4">
           Latest{" "}
-          <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             Books
           </span>
         </h2>
@@ -117,7 +117,7 @@ const LatestBooks = () => {
           >
             {/* Image Container */}
             <div className="relative h-64 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent z-10" />
               <img
                 src={book.image}
                 alt={book.name}
@@ -131,7 +131,7 @@ const LatestBooks = () => {
               </div>
               {/* Price Badge */}
               <div className="absolute top-4 right-4 z-20">
-                <span className="px-3 py-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full text-sm font-bold text-white shadow-lg">
+                <span className="px-3 py-1 bg-linear-to-r from-indigo-600 to-purple-600 rounded-full text-sm font-bold text-white shadow-lg">
                   ${book.price}
                 </span>
               </div>
@@ -186,8 +186,8 @@ const LatestBooks = () => {
                     book.quantity > 5
                       ? "text-green-600"
                       : book.quantity > 0
-                      ? "text-yellow-600"
-                      : "text-red-600"
+                        ? "text-yellow-600"
+                        : "text-red-600"
                   }`}
                 >
                   {book.quantity > 0
@@ -196,7 +196,7 @@ const LatestBooks = () => {
                 </span>
                 <button
                   onClick={() => navigate(`/book/${book._id}`)}
-                  className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                  className="px-5 py-2.5 bg-linear-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                 >
                   View Details
                 </button>
@@ -213,7 +213,7 @@ const LatestBooks = () => {
       <div className="mt-12 flex justify-center">
         <Link
           to="/books"
-          className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
+          className="group inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 transition-all duration-200"
         >
           View All Books
           <svg

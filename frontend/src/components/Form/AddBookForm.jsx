@@ -7,6 +7,7 @@ import ErrorPage from "../../pages/ErrorPage";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+// AI description generator removed
 
 const AddBookForm = () => {
   const { user } = useAuth();
@@ -46,8 +47,19 @@ const AddBookForm = () => {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  // Watch form values for AI generation
+  const watchedName = watch("name");
+  const watchedCategory = watch("category");
+
+  const handleGeneratedDescription = (description) => {
+    setValue("description", description);
+    toast.success("AI generated description added!");
+  };
 
   const onSubmit = async (data) => {
     const { name, description, quantity, price, category, image } = data;
@@ -95,12 +107,12 @@ const AddBookForm = () => {
       </div>
 
       <div className="form-control">
-        <label className="label">
+        <label className="label py-0">
           <span className="label-text font-semibold">Description</span>
         </label>
         <textarea
           {...register("description", { required: "Description is required" })}
-          placeholder="Short description about the book"
+          placeholder="Short description about the book (or use AI to generate one)"
           className="textarea textarea-bordered w-full"
           rows={4}
         />

@@ -68,16 +68,16 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <section className="py-20 bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-linear-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
             💬 Customer Reviews
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
             What Our{" "}
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Customers Say
             </span>
           </h2>
@@ -99,7 +99,7 @@ const Testimonials = () => {
               }`}
             >
               {/* Quote Icon */}
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg transform -rotate-12 group-hover:rotate-0 transition-transform duration-300">
+              <div className="absolute -top-4 -left-4 w-12 h-12 bg-linear-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg transform -rotate-12 group-hover:rotate-0 transition-transform duration-300">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="currentColor"

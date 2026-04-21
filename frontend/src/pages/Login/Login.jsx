@@ -114,10 +114,10 @@ const Login = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="flex justify-center items-center min-h-screen bg-linear-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="flex flex-col w-full max-w-md p-8 rounded-3xl bg-white dark:bg-gray-800 shadow-2xl m-4">
         <div className="mb-8 text-center">
-          <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-linear-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <span className="text-3xl">📚</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
@@ -138,7 +138,7 @@ const Login = () => {
               <button
                 key={role}
                 onClick={() => fillDemoCredentials(role)}
-                className={`flex flex-col items-center gap-1 p-3 rounded-xl bg-gradient-to-br ${data.color} text-white text-xs font-medium hover:shadow-lg hover:scale-105 transition-all duration-200`}
+                className={`flex flex-col items-center gap-1 p-3 rounded-xl bg-linear-to-br ${data.color} text-white text-xs font-medium hover:shadow-lg hover:scale-105 transition-all duration-200`}
               >
                 <data.icon className="text-lg" />
                 {data.label}
@@ -210,7 +210,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1"
+            className="w-full py-3 bg-linear-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1"
           >
             {loading ? <BookCourierSpinner size={24} /> : "Sign In"}
           </button>

@@ -34,7 +34,7 @@ const ReviewForm = ({ bookId, onReviewAdded }) => {
       if (onReviewAdded) onReviewAdded();
     } catch {
       setError(
-        "Failed to submit review. You may have already reviewed this book."
+        "Failed to submit review. You may have already reviewed this book.",
       );
     }
     setLoading(false);
@@ -63,9 +63,9 @@ const ReviewForm = ({ bookId, onReviewAdded }) => {
   const ratingLabels = ["", "Poor", "Fair", "Good", "Very Good", "Excellent"];
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg">
+    <div className="bg-linear-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg">
       <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-        <span className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
+        <span className="w-8 h-8 bg-linear-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
           <svg
             className="w-5 h-5 text-white"
             fill="none"
@@ -174,7 +174,7 @@ const ReviewForm = ({ bookId, onReviewAdded }) => {
         <button
           type="submit"
           disabled={loading || rating === 0}
-          className="w-full py-4 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+          className="w-full py-4 px-6 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
         >
           {loading ? (
             <>

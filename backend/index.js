@@ -4,9 +4,10 @@ const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const admin = require("firebase-admin");
+// AI integrations removed
 const port = process.env.PORT || 3000;
 const decoded = Buffer.from(process.env.FB_SERVICE_KEY, "base64").toString(
-  "utf-8"
+  "utf-8",
 );
 const serviceAccount = JSON.parse(decoded);
 admin.initializeApp({
@@ -25,7 +26,7 @@ app.use(
     ],
     credentials: true,
     optionSuccessStatus: 200,
-  })
+  }),
 );
 app.use(express.json());
 
@@ -211,7 +212,7 @@ async function run() {
       }
       const result = await booksCollection.updateOne(
         { _id: new ObjectId(id) },
-        { $set: update }
+        { $set: update },
       );
       res.send({ success: result.modifiedCount === 1 });
     });
@@ -277,7 +278,7 @@ async function run() {
           {
             _id: new ObjectId(session.metadata.bookId),
           },
-          { $inc: { quantity: -1 } }
+          { $inc: { quantity: -1 } },
         );
 
         return res.send({
@@ -332,7 +333,7 @@ async function run() {
       if (!status) return res.status(400).send({ message: "Missing status" });
       const result = await ordersCollection.updateOne(
         { _id: new ObjectId(id) },
-        { $set: { status } }
+        { $set: { status } },
       );
       res.send({ success: result.modifiedCount === 1 });
     });
@@ -349,7 +350,7 @@ async function run() {
           .find({ "seller.email": email })
           .toArray();
         res.send(result);
-      }
+      },
     );
 
     // get all books for a seller by email
@@ -364,7 +365,7 @@ async function run() {
           .find({ "seller.email": email })
           .toArray();
         res.send(result);
-      }
+      },
     );
 
     // save or update a user in db
@@ -454,7 +455,7 @@ async function run() {
       const { email, role } = req.body;
       const result = await usersCollection.updateOne(
         { email },
-        { $set: { role } }
+        { $set: { role } },
       );
       await sellerRequestsCollection.deleteOne({ email });
 
@@ -513,10 +514,382 @@ async function run() {
       }
     });
 
+    // === REVIEWS ENDPOINTS ===
+
+    // Get reviews for a book
+    app.get("/reviews/:bookId", async (req, res) => {
+      const { bookId } = req.params;
+      const { limit = 10, page = 1 } = req.query;
+
+      try {
+        const reviews = await reviewsCollection
+          .find({ bookId })
+          .sort({ createdAt: -1 })
+          .skip((page - 1) * limit)
+          .limit(parseInt(limit))
+          .toArray();
+
+        const totalReviews = await reviewsCollection.countDocuments({ bookId });
+
+        const ratingDistribution = await reviewsCollection
+          .aggregate([
+            { $match: { bookId } },
+            { $group: { _id: "$rating", count: { $sum: 1 } } },
+          ])
+          .toArray();
+
+        const distribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+        ratingDistribution.forEach((r) => {
+          distribution[r._id] = r.count;
+        });
+
+        const averageRating =
+          totalReviews > 0
+            ? reviews.reduce((acc, r) => acc + (r.rating || 0), 0) /
+              totalReviews
+            : 0;
+
+        res.send({
+          reviews,
+          totalReviews,
+          averageRating,
+          ratingDistribution: distribution,
+        });
+      } catch (error) {
+        console.error("Reviews fetch error:", error);
+        res.status(500).send({ message: "Error fetching reviews" });
+      }
+    });
+
+    // Get user's review for a book
+    app.get("/reviews/user/:bookId", verifyJWT, async (req, res) => {
+      const { bookId } = req.params;
+      const email = req.tokenEmail;
+
+      try {
+        const review = await reviewsCollection.findOne({
+          bookId,
+          userEmail: email,
+        });
+        res.send({ review });
+      } catch (error) {
+        console.error("User review fetch error:", error);
+        res.status(500).send({ message: "Error fetching review" });
+      }
+    });
+
+    // Submit a review
+    app.post("/reviews", verifyJWT, async (req, res) => {
+      const { bookId, rating, comment } = req.body;
+      const email = req.tokenEmail;
+
+      if (!bookId || !rating || !comment) {
+        return res
+          .status(400)
+          .send({ message: "Book ID, rating, and comment are required" });
+      }
+
+      if (rating < 1 || rating > 5) {
+        return res
+          .status(400)
+          .send({ message: "Rating must be between 1 and 5" });
+      }
+
+      try {
+        // Check if user already reviewed this book
+        const existingReview = await reviewsCollection.findOne({
+          bookId,
+          userEmail: email,
+        });
+
+        if (existingReview) {
+          return res
+            .status(400)
+            .send({ message: "You have already reviewed this book" });
+        }
+
+        // Check if user purchased the book (for verified purchase badge)
+        const order = await ordersCollection.findOne({
+          customer: email,
+          bookId: bookId,
+          status: "delivered",
+        });
+
+        const user = await usersCollection.findOne({ email });
+
+        const review = {
+          bookId,
+          userEmail: email,
+          userName: user?.name || user?.displayName || "Anonymous",
+          userImage: user?.image || user?.photoURL || "",
+          rating: parseInt(rating),
+          comment,
+          verifiedPurchase: !!order,
+          likes: [],
+          helpful: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+
+        const result = await reviewsCollection.insertOne(review);
+
+        res.send({
+          message: "Review submitted successfully",
+          review: { ...review, _id: result.insertedId },
+        });
+      } catch (error) {
+        console.error("Review submission error:", error);
+        res.status(500).send({ message: "Error submitting review" });
+      }
+    });
+
+    // Update a review
+    app.put("/reviews/:reviewId", verifyJWT, async (req, res) => {
+      const { reviewId } = req.params;
+      const { rating, comment } = req.body;
+      const email = req.tokenEmail;
+
+      try {
+        const review = await reviewsCollection.findOne({
+          _id: new ObjectId(reviewId),
+          userEmail: email,
+        });
+
+        if (!review) {
+          return res
+            .status(404)
+            .send({ message: "Review not found or unauthorized" });
+        }
+
+        const updateData = {
+          ...(rating && { rating: parseInt(rating) }),
+          ...(comment && { comment }),
+          updatedAt: new Date(),
+        };
+
+        await reviewsCollection.updateOne(
+          { _id: new ObjectId(reviewId) },
+          { $set: updateData },
+        );
+
+        res.send({
+          message: "Review updated successfully",
+          review: { ...review, ...updateData },
+        });
+      } catch (error) {
+        console.error("Review update error:", error);
+        res.status(500).send({ message: "Error updating review" });
+      }
+    });
+
+    // Delete a review
+    app.delete("/reviews/:reviewId", verifyJWT, async (req, res) => {
+      const { reviewId } = req.params;
+      const email = req.tokenEmail;
+
+      try {
+        const result = await reviewsCollection.deleteOne({
+          _id: new ObjectId(reviewId),
+          userEmail: email,
+        });
+
+        if (result.deletedCount === 0) {
+          return res
+            .status(404)
+            .send({ message: "Review not found or unauthorized" });
+        }
+
+        res.send({ message: "Review deleted successfully" });
+      } catch (error) {
+        console.error("Review delete error:", error);
+        res.status(500).send({ message: "Error deleting review" });
+      }
+    });
+
+    // Like a review
+    app.post("/reviews/:reviewId/like", verifyJWT, async (req, res) => {
+      const { reviewId } = req.params;
+      const email = req.tokenEmail;
+
+      try {
+        const review = await reviewsCollection.findOne({
+          _id: new ObjectId(reviewId),
+        });
+
+        if (!review) {
+          return res.status(404).send({ message: "Review not found" });
+        }
+
+        const hasLiked = review.likes?.includes(email);
+
+        if (hasLiked) {
+          await reviewsCollection.updateOne(
+            { _id: new ObjectId(reviewId) },
+            { $pull: { likes: email } },
+          );
+        } else {
+          await reviewsCollection.updateOne(
+            { _id: new ObjectId(reviewId) },
+            { $addToSet: { likes: email } },
+          );
+        }
+
+        res.send({ message: hasLiked ? "Like removed" : "Review liked" });
+      } catch (error) {
+        console.error("Review like error:", error);
+        res.status(500).send({ message: "Error liking review" });
+      }
+    });
+
+    // Mark review as helpful
+    app.post("/reviews/:reviewId/helpful", verifyJWT, async (req, res) => {
+      const { reviewId } = req.params;
+      const email = req.tokenEmail;
+
+      try {
+        const review = await reviewsCollection.findOne({
+          _id: new ObjectId(reviewId),
+        });
+
+        if (!review) {
+          return res.status(404).send({ message: "Review not found" });
+        }
+
+        const hasMarked = review.helpful?.includes(email);
+
+        if (hasMarked) {
+          await reviewsCollection.updateOne(
+            { _id: new ObjectId(reviewId) },
+            { $pull: { helpful: email } },
+          );
+        } else {
+          await reviewsCollection.updateOne(
+            { _id: new ObjectId(reviewId) },
+            { $addToSet: { helpful: email } },
+          );
+        }
+
+        res.send({
+          message: hasMarked ? "Helpful mark removed" : "Marked as helpful",
+        });
+      } catch (error) {
+        console.error("Review helpful error:", error);
+        res.status(500).send({ message: "Error marking review" });
+      }
+    });
+
+    // === PRICE ALERTS ENDPOINTS ===
+
+    // Get user's price alerts
+    app.get("/price-alerts", verifyJWT, async (req, res) => {
+      const email = req.tokenEmail;
+
+      try {
+        const alerts = await priceAlertsCollection
+          .find({ email })
+          .sort({ createdAt: -1 })
+          .toArray();
+
+        // Get book details for each alert
+        const alertsWithBooks = await Promise.all(
+          alerts.map(async (alert) => {
+            const book = await booksCollection.findOne({
+              _id: new ObjectId(alert.bookId),
+            });
+            return { ...alert, book };
+          }),
+        );
+
+        res.send(alertsWithBooks);
+      } catch (error) {
+        console.error("Price alerts fetch error:", error);
+        res.status(500).send({ message: "Error fetching price alerts" });
+      }
+    });
+
+    // Create price alert
+    app.post("/price-alerts", verifyJWT, async (req, res) => {
+      const { bookId, targetPrice } = req.body;
+      const email = req.tokenEmail;
+
+      if (!bookId || !targetPrice) {
+        return res
+          .status(400)
+          .send({ message: "Book ID and target price are required" });
+      }
+
+      try {
+        // Check if book exists
+        const book = await booksCollection.findOne({
+          _id: new ObjectId(bookId),
+        });
+        if (!book) {
+          return res.status(404).send({ message: "Book not found" });
+        }
+
+        // Check if alert already exists
+        const existingAlert = await priceAlertsCollection.findOne({
+          email,
+          bookId,
+        });
+        if (existingAlert) {
+          return res
+            .status(400)
+            .send({ message: "Price alert already exists for this book" });
+        }
+
+        const alert = {
+          email,
+          bookId,
+          currentPrice: book.price,
+          targetPrice: parseFloat(targetPrice),
+          status: "active",
+          createdAt: new Date(),
+          triggeredAt: null,
+        };
+
+        const result = await priceAlertsCollection.insertOne(alert);
+
+        res.send({
+          message: "Price alert created successfully",
+          alert: { ...alert, _id: result.insertedId },
+        });
+      } catch (error) {
+        console.error("Price alert creation error:", error);
+        res.status(500).send({ message: "Error creating price alert" });
+      }
+    });
+
+    // Delete price alert
+    app.delete("/price-alerts/:alertId", verifyJWT, async (req, res) => {
+      const { alertId } = req.params;
+      const email = req.tokenEmail;
+
+      try {
+        const result = await priceAlertsCollection.deleteOne({
+          _id: new ObjectId(alertId),
+          email,
+        });
+
+        if (result.deletedCount === 0) {
+          return res.status(404).send({ message: "Price alert not found" });
+        }
+
+        res.send({ message: "Price alert deleted successfully" });
+      } catch (error) {
+        console.error("Price alert delete error:", error);
+        res.status(500).send({ message: "Error deleting price alert" });
+      }
+    });
+
+    // === END REVIEWS & PRICE ALERTS ENDPOINTS ===
+
+    // AI endpoints removed
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
+      "Pinged your deployment. You successfully connected to MongoDB!",
     );
   } finally {
     // Ensures that the client will close when you finish/error
