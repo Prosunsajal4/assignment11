@@ -1,6 +1,4 @@
 import { Component } from "react";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
 
 class ModernErrorBoundary extends Component {
   constructor(props) {

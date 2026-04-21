@@ -1,6 +1,5 @@
 import { memo, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 const BookCard = memo(({ book, index = 0 }) => {
