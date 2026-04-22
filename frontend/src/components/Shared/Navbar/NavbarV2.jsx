@@ -147,7 +147,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-linear-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
               <FaBook className="text-xl text-white" />
             </div>
             <span className="font-bold text-xl text-gray-800 dark:text-white hidden sm:block">
@@ -305,7 +305,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-4 py-2 text-sm font-medium bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full hover:shadow-lg transition-all"
+                  className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full hover:shadow-lg transition-all"
                 >
                   Sign Up
                 </Link>

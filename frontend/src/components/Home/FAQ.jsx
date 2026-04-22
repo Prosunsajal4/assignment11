@@ -41,12 +41,12 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-linear-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/50 dark:to-teal-900/50 text-emerald-700 dark:text-emerald-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/50 dark:to-teal-900/50 text-emerald-700 dark:text-emerald-300 text-sm font-semibold rounded-full mb-4">
             ❓ Got Questions?
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
             Frequently Asked{" "}
-            <span className="bg-linear-to-br from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-br from-emerald-600 to-teal-600 bg-clip-text text-transparent">
               Questions
             </span>
           </h2>
@@ -63,7 +63,7 @@ const FAQ = () => {
               key={index}
               className={`group rounded-2xl overflow-hidden transition-all duration-300 ${
                 openIndex === index
-                  ? "bg-linear-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/20"
+                  ? "bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/20"
                   : "bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
               }`}
             >
@@ -132,7 +132,7 @@ const FAQ = () => {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-br from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 transform hover:-translate-y-1"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 transform hover:-translate-y-1"
           >
             <svg
               className="w-5 h-5"

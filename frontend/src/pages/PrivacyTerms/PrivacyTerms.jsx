@@ -5,16 +5,16 @@ const PrivacyTerms = () => {
   const [activeTab, setActiveTab] = useState("privacy");
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
       <Container>
         {/* Page Header */}
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-linear-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
             📋 Legal
           </span>
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
             Privacy &{" "}
-            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Terms
             </span>
           </h1>
@@ -31,7 +31,7 @@ const PrivacyTerms = () => {
               onClick={() => setActiveTab("privacy")}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                 activeTab === "privacy"
-                  ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-md"
+                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md"
                   : "text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
               }`}
             >
@@ -41,7 +41,7 @@ const PrivacyTerms = () => {
               onClick={() => setActiveTab("terms")}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                 activeTab === "terms"
-                  ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-md"
+                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md"
                   : "text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
               }`}
             >

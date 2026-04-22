@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import BookCourierSpinner from "../../components/Shared/BookCourierSpinner";
 import Hero from "../../components/Home/Hero";
 
-
+// Modern: Lazy load components for better performance
 const LatestBooks = lazy(() => import("../../components/Home/LatestBooks"));
 const CoverageMap = lazy(() => import("../../components/Home/CoverageMap"));
 const WhyChooseBookCourier = lazy(
@@ -86,7 +86,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* 6. Statistics Counter - Trust Indicators */}
-      <AnimatedSection className="py-20 bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600">
+      <AnimatedSection className="py-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
         <Suspense fallback={<ComponentLoader componentName="Statistics" />}>
           <StatisticsCounter />
         </Suspense>
@@ -130,7 +130,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* 12. Newsletter - CTA Section */}
-      <AnimatedSection className="py-20 bg-linear-to-br from-gray-900 via-gray-800 to-gray-900">
+      <AnimatedSection className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Suspense fallback={<ComponentLoader componentName="Newsletter" />}>
           <Newsletter />
         </Suspense>

@@ -42,7 +42,7 @@ const FloatingComparisonButton = () => {
       {/* Main Compare Button */}
       <button
         onClick={toggleCompareModal}
-        className="flex items-center gap-2 px-6 py-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full shadow-2xl hover:shadow-indigo-500/30 transition-all hover:scale-105 active:scale-95"
+        className="flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full shadow-2xl hover:shadow-indigo-500/30 transition-all hover:scale-105 active:scale-95"
       >
         <FaBalanceScale />
         <span className="font-semibold">Compare ({compareCount})</span>

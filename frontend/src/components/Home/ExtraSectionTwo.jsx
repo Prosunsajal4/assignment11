@@ -1,7 +1,7 @@
 import React from "react";
 
 const ExtraSectionTwo = () => (
-  <section className="py-16 bg-linear-to-r from-blue-50 to-lime-100">
+  <section className="py-16 bg-gradient-to-r from-blue-50 to-lime-100">
     <div className="max-w-4xl mx-auto px-4 text-center">
       <h2 className="text-2xl md:text-3xl font-bold text-blue-700 mb-4 animate-fade-in">
         Our Promise

@@ -82,7 +82,7 @@ const BookCard = memo(({ book, index = 0 }) => {
         variants={hoverVariants}
       >
         <motion.div
-          className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent z-10"
+          className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
           variants={imageVariants}
         />
         <motion.img
@@ -126,7 +126,7 @@ const BookCard = memo(({ book, index = 0 }) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.4 + index * 0.1 }}
         >
-          <span className="px-4 py-2 bg-linear-to-r from-indigo-600 to-purple-600 rounded-full text-sm font-bold text-white shadow-lg">
+          <span className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full text-sm font-bold text-white shadow-lg">
             ${book.price}
           </span>
         </motion.div>
@@ -208,7 +208,7 @@ const BookCard = memo(({ book, index = 0 }) => {
 
         {/* Animated Action Button */}
         <motion.button
-          className="w-full py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform transition-all duration-200 flex items-center justify-center gap-2"
+          className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform transition-all duration-200 flex items-center justify-center gap-2"
           whileHover={{
             scale: 1.05,
             boxShadow:

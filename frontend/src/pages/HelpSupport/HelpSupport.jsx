@@ -79,16 +79,16 @@ const HelpSupport = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
       <Container>
         {/* Page Header */}
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-linear-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
             🆘 Help & Support
           </span>
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
             How Can We{" "}
-            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Help You?
             </span>
           </h1>
@@ -105,7 +105,7 @@ const HelpSupport = () => {
               onClick={() => setActiveTab("faq")}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                 activeTab === "faq"
-                  ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-md"
+                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md"
                   : "text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
               }`}
             >
@@ -115,7 +115,7 @@ const HelpSupport = () => {
               onClick={() => setActiveTab("contact")}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${
                 activeTab === "contact"
-                  ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-md"
+                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md"
                   : "text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
               }`}
             >
@@ -240,7 +240,7 @@ const HelpSupport = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <svg
                     className="w-5 h-5"

@@ -137,7 +137,7 @@ const BookComparisonModal = () => {
                         navigate(`/book/${book._id}`);
                         setIsCompareModalOpen(false);
                       }}
-                      className="w-full py-2 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg transition-shadow"
+                      className="w-full py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium hover:shadow-lg transition-shadow"
                     >
                       View Book
                     </button>

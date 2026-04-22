@@ -138,7 +138,7 @@ const AdminStatistics = () => {
       {/* Stats Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
         {/* Revenue Card */}
-        <div className="relative bg-linear-to-br from-orange-500 to-amber-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-orange-500/20">
+        <div className="relative bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-orange-500/20">
           <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-xl" />
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
@@ -157,7 +157,7 @@ const AdminStatistics = () => {
         </div>
 
         {/* Orders Card */}
-        <div className="relative bg-linear-to-br from-blue-500 to-indigo-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-blue-500/20">
+        <div className="relative bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-blue-500/20">
           <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-xl" />
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
@@ -174,7 +174,7 @@ const AdminStatistics = () => {
         </div>
 
         {/* Books Card */}
-        <div className="relative bg-linear-to-br from-pink-500 to-rose-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-pink-500/20">
+        <div className="relative bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-pink-500/20">
           <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-xl" />
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
@@ -191,7 +191,7 @@ const AdminStatistics = () => {
         </div>
 
         {/* Users Card */}
-        <div className="relative bg-linear-to-br from-emerald-500 to-teal-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-emerald-500/20">
+        <div className="relative bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl p-6 text-white overflow-hidden shadow-lg shadow-emerald-500/20">
           <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full blur-xl" />
           <div className="relative">
             <div className="flex items-center justify-between mb-4">

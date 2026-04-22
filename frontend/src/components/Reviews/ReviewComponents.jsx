@@ -215,7 +215,7 @@ const ReviewForm = ({ onSubmit, initialData = null, onCancel }) => {
         <button
           type="submit"
           disabled={rating === 0 || isSubmitting}
-          className="px-6 py-2.5 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? "Submitting..." : initialData ? "Update Review" : "Submit Review"}
         </button>

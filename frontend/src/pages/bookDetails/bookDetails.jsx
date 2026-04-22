@@ -163,7 +163,7 @@ const BookDetails = () => {
           {/* Left - Image Section */}
           <div className="space-y-4">
             <div className="relative group">
-              <div className="absolute -inset-1 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500" />
               <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl">
                 <img
                   className="w-full h-[500px] object-cover transform group-hover:scale-105 transition duration-700"
@@ -195,21 +195,21 @@ const BookDetails = () => {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="bg-linear-to-br from-indigo-50 to-indigo-100 rounded-2xl p-4 text-center">
+              <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-4 text-center">
                 <div className="text-2xl mb-1">⭐</div>
                 <div className="text-2xl font-bold text-indigo-600">
                   {avgRating}
                 </div>
                 <div className="text-xs text-indigo-500">Rating</div>
               </div>
-              <div className="bg-linear-to-br from-purple-50 to-purple-100 rounded-2xl p-4 text-center">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-4 text-center">
                 <div className="text-2xl mb-1">💬</div>
                 <div className="text-2xl font-bold text-purple-600">
                   {reviews.length}
                 </div>
                 <div className="text-xs text-purple-500">Reviews</div>
               </div>
-              <div className="bg-linear-to-br from-pink-50 to-pink-100 rounded-2xl p-4 text-center">
+              <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-4 text-center">
                 <div className="text-2xl mb-1">📦</div>
                 <div className="text-2xl font-bold text-pink-600">
                   {quantity}
@@ -248,7 +248,7 @@ const BookDetails = () => {
                 </div>
               </div>
               <div className="flex items-baseline gap-3">
-                <span className="text-5xl font-bold bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   ${price}
                 </span>
                 <span className="text-lg text-gray-400 line-through">
@@ -282,7 +282,7 @@ const BookDetails = () => {
             </div>
 
             {/* Seller Info */}
-            <div className="bg-linear-to-r from-indigo-50 to-purple-50 rounded-2xl p-6">
+            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6">
               <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
                 <svg
                   className="w-5 h-5 text-indigo-500"
@@ -326,7 +326,7 @@ const BookDetails = () => {
               <button
                 onClick={() => setIsOpen(true)}
                 disabled={quantity === 0}
-                className="flex-1 py-4 px-6 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex-1 py-4 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 <svg
                   className="w-5 h-5"
@@ -490,7 +490,7 @@ const BookDetails = () => {
                       className="bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-colors"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-linear-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                           {review.email?.charAt(0).toUpperCase()}
                         </div>
                         <div className="flex-1">
@@ -558,7 +558,7 @@ const BookDetails = () => {
         {relatedBooks.length > 0 && (
           <div className="mt-16">
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8 flex items-center gap-3">
-              <span className="w-10 h-10 bg-linear-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center text-white text-xl">
+              <span className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center text-white text-xl">
                 📚
               </span>
               Related Books
@@ -576,7 +576,7 @@ const BookDetails = () => {
                       alt={relatedBook.name}
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="p-4">
                     <span className="inline-block px-2 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 text-xs font-semibold rounded-full mb-2">

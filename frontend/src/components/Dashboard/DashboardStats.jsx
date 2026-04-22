@@ -36,7 +36,7 @@ const StatsCard = ({
     <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300">
       {/* Gradient Background Accent */}
       <div
-        className={`absolute top-0 right-0 w-32 h-32 bg-linear-to-br ${colorClasses[color]} opacity-10 rounded-bl-full`}
+        className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${colorClasses[color]} opacity-10 rounded-bl-full`}
       />
 
       <div className="p-6 relative">
@@ -80,7 +80,7 @@ const StatsCard = ({
         {/* Progress Bar (decorative) */}
         <div className="mt-4 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
           <div
-            className={`h-full bg-linear-to-r ${colorClasses[color]} rounded-full`}
+            className={`h-full bg-gradient-to-r ${colorClasses[color]} rounded-full`}
             style={{ width: `${progress}%` }}
           />
         </div>

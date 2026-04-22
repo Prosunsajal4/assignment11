@@ -75,7 +75,7 @@ const Hero = () => {
     <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
       {/* Background Gradient */}
       <div
-        className={`absolute inset-0 bg-linear-to-br ${current.gradient} transition-all duration-1000`}
+        className={`absolute inset-0 bg-gradient-to-br ${current.gradient} transition-all duration-1000`}
       />
 
       {/* Pattern Overlay */}
@@ -112,7 +112,7 @@ const Hero = () => {
               {/* Title */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
                 {current.title}{" "}
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-300 to-pink-300">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-300">
                   {current.highlight}
                 </span>
               </h1>
@@ -167,7 +167,7 @@ const Hero = () => {
                   alt="Books"
                   className="w-full h-[500px] object-cover"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
 
               {/* Floating Cards */}

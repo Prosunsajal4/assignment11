@@ -99,7 +99,7 @@ const MyWishlist = () => {
               </p>
               <Link
                 to="/books"
-                className="inline-flex items-center gap-2 bg-linear-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
               >
                 <svg
                   className="w-5 h-5"
@@ -152,7 +152,7 @@ const MyWishlist = () => {
                     loading="lazy"
                   />
                   <motion.div
-                    className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     initial={false}
                   />
                 </motion.div>
@@ -172,7 +172,7 @@ const MyWishlist = () => {
               </Link>
 
               <motion.button
-                className="w-full bg-linear-to-r from-red-500 to-pink-500 text-white py-2 px-4 rounded-full font-semibold shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                className="w-full bg-gradient-to-r from-red-500 to-pink-500 text-white py-2 px-4 rounded-full font-semibold shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 disabled={isPending}
                 onClick={() => handleRemoveFromWishlist(book._id)}
                 whileHover={{ scale: 1.02 }}

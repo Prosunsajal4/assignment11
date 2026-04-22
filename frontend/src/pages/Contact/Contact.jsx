@@ -50,16 +50,16 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20">
       <Container>
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-linear-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/50 dark:to-teal-900/50 text-emerald-700 dark:text-emerald-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/50 dark:to-teal-900/50 text-emerald-700 dark:text-emerald-300 text-sm font-semibold rounded-full mb-4">
             📬 Get In Touch
           </span>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-6">
             Contact{" "}
-            <span className="bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
               Us
             </span>
           </h1>
@@ -137,7 +137,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-linear-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
                   <>
@@ -201,7 +201,7 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-6 text-white">
               <h3 className="font-bold text-xl mb-4">Follow Us</h3>
               <div className="flex gap-4">
                 {["facebook", "twitter", "instagram", "linkedin"].map(

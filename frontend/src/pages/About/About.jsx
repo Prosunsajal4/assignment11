@@ -36,16 +36,16 @@ const stats = [
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-linear-to-r from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20">
+    <div className="min-h-screen bg-gradient-to-r from-gray-50 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20">
       <Container>
         {/* Hero Section */}
         <div className="text-center mb-20">
-          <span className="inline-block px-4 py-2 bg-linear-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
             📖 Our Story
           </span>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-6">
             About{" "}
-            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               BookCourier
             </span>
           </h1>
@@ -59,7 +59,7 @@ const About = () => {
         {/* Mission & Vision */}
         <div className="grid md:grid-cols-2 gap-8 mb-20">
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-            <div className="w-16 h-16 bg-linear-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6">
               <svg
                 className="w-8 h-8 text-white"
                 fill="none"
@@ -91,7 +91,7 @@ const About = () => {
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-            <div className="w-16 h-16 bg-linear-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6">
               <svg
                 className="w-8 h-8 text-white"
                 fill="none"
@@ -118,7 +118,7 @@ const About = () => {
         </div>
 
         {/* Stats */}
-        <div className="bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 mb-20 shadow-2xl">
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 mb-20 shadow-2xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
@@ -136,7 +136,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">
               Meet Our{" "}
-              <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Team
               </span>
             </h2>
@@ -153,7 +153,7 @@ const About = () => {
                 className="group bg-white dark:bg-gray-800 rounded-3xl p-6 text-center shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="relative inline-block mb-6">
-                  <div className="absolute inset-0 bg-linear-to-r from-indigo-400 to-purple-500 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300 scale-110" />
                   <img
                     src={member.image}
                     alt={member.name}
@@ -178,7 +178,7 @@ const About = () => {
         <div className="bg-gray-50 dark:bg-gray-800/50 rounded-3xl p-8 md:p-12">
           <h2 className="text-3xl font-bold text-gray-800 dark:text-white text-center mb-12">
             Our Core{" "}
-            <span className="bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Values
             </span>
           </h2>

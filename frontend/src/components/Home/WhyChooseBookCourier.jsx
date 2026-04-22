@@ -2,7 +2,7 @@ import React from "react";
 import { FaRocket, FaBookOpen, FaSmile, FaShippingFast } from "react-icons/fa";
 
 const WhyChooseBookCourier = () => (
-  <section className="py-16 bg-linear-to-r from-lime-100 to-blue-50">
+  <section className="py-16 bg-gradient-to-r from-lime-100 to-blue-50">
     <div className="max-w-5xl mx-auto px-4 text-center">
       <h2 className="text-3xl md:text-4xl font-bold text-lime-700 mb-6 animate-fade-in">
         Why Choose BookCourier?

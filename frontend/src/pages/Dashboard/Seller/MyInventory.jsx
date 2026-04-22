@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import BookDataRow from "../../../components/Dashboard/TableRows/BookDataRow";
-import useAuth from "../../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import BookCourierSpinner from "../../../components/Shared/BookCourierSpinner";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyInventory = () => {
   const { user } = useAuth();

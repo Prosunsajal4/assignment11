@@ -108,7 +108,7 @@ const BookCard = memo(({ book, index = 0 }) => {
       {/* Image Container */}
       <div className="relative h-72 overflow-hidden">
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
         {/* Book Image */}
         <img
@@ -160,7 +160,7 @@ const BookCard = memo(({ book, index = 0 }) => {
                 ${book.originalPrice}
               </span>
             )}
-            <span className="px-4 py-2 bg-linear-to-r from-indigo-600 to-purple-600 rounded-full text-lg font-bold text-white shadow-lg">
+            <span className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full text-lg font-bold text-white shadow-lg">
               ${book.price}
             </span>
           </div>
@@ -261,16 +261,16 @@ const BookCard = memo(({ book, index = 0 }) => {
         )}
 
         {/* Action Button */}
-        <button className="w-full py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg flex items-center justify-center gap-2 group-hover:from-indigo-700 group-hover:to-purple-700 transition-all hover:scale-[1.02] active:scale-[0.98]">
+        <button className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg flex items-center justify-center gap-2 group-hover:from-indigo-700 group-hover:to-purple-700 transition-all hover:scale-[1.02] active:scale-[0.98]">
           <FaEye />
           View Details
         </button>
       </div>
 
       {/* Hover Glow Effect */}
-      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-        <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-indigo-500/10 to-purple-500/10" />
-      </div>
+        <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500/10 to-purple-500/10" />
+        </div>
     </div>
   );
 });

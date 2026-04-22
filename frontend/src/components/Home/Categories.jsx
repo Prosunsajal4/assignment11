@@ -73,12 +73,12 @@ const Categories = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-linear-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/50 dark:to-blue-900/50 text-cyan-700 dark:text-cyan-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/50 dark:to-blue-900/50 text-cyan-700 dark:text-cyan-300 text-sm font-semibold rounded-full mb-4">
             📂 Book Categories
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
             Browse by{" "}
-            <span className="bg-linear-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
               Category
             </span>
           </h2>
@@ -97,7 +97,7 @@ const Categories = () => {
             >
               {/* Hover Background */}
               <div
-                className={`absolute inset-0 bg-linear-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
               />
 
               {/* Content */}

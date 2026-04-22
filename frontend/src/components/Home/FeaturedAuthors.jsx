@@ -45,12 +45,12 @@ const FeaturedAuthors = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-linear-to-r from-amber-100 to-orange-100 dark:from-amber-900/50 dark:to-orange-900/50 text-amber-700 dark:text-amber-300 text-sm font-semibold rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/50 dark:to-orange-900/50 text-amber-700 dark:text-amber-300 text-sm font-semibold rounded-full mb-4">
             ✍️ Literary Icons
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
             Featured{" "}
-            <span className="bg-linear-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
               Authors
             </span>
           </h2>
@@ -67,19 +67,19 @@ const FeaturedAuthors = () => {
               className="group relative bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
             >
               {/* Background Gradient */}
-              <div className="absolute inset-0 bg-linear-to-br from-amber-500/0 to-orange-500/0 group-hover:from-amber-500/10 group-hover:to-orange-500/10 transition-all duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 to-orange-500/0 group-hover:from-amber-500/10 group-hover:to-orange-500/10 transition-all duration-500" />
 
               {/* Content */}
               <div className="relative p-8 text-center">
                 {/* Avatar */}
                 <div className="relative inline-block mb-6">
-                  <div className="absolute inset-0 bg-linear-to-br from-amber-400 to-orange-500 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500 scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-500 scale-110" />
                   <img
                     src={author.avatar}
                     alt={author.name}
                     className="relative w-28 h-28 rounded-full object-cover ring-4 ring-white dark:ring-gray-700 shadow-xl transform group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-linear-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
                     <span className="text-white text-sm font-bold">
                       {author.books}
                     </span>
@@ -108,7 +108,7 @@ const FeaturedAuthors = () => {
                   <div className="w-px h-8 bg-gray-200 dark:bg-gray-700" />
                   <Link
                     to="/books"
-                    className="px-4 py-2 bg-linear-to-r from-amber-500 to-orange-500 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-300"
+                    className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-300"
                   >
                     View Books
                   </Link>

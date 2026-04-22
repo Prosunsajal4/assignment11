@@ -180,7 +180,7 @@ const QuickViewModal = ({ book, isOpen, onClose }) => {
             <button
               onClick={handleAddToCart}
               disabled={book.quantity === 0}
-              className="flex-1 flex items-center justify-center gap-2 py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <FaShoppingCart />
               Add to Cart

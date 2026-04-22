@@ -34,11 +34,11 @@ const Slider = ({ slides = [], interval = 4000 }) => {
             <div
               className={`w-full h-full ${
                 s.bg ||
-                "bg-linear-to-r from-indigo-600 via-purple-600 to-pink-600"
+                "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600"
               }`}
             />
           )}
-          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           {(s.title || s.subtitle) && (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
               {s.title && (
