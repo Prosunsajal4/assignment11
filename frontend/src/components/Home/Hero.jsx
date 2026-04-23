@@ -72,7 +72,7 @@ const Hero = () => {
   const current = slides[currentSlide];
 
   return (
-    <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
+    <section className="relative pt-20 lg:pt-24 h-[85vh] min-h-[600px] overflow-hidden">
       {/* Background Gradient */}
       <div
         className={`absolute inset-0 bg-gradient-to-br ${current.gradient} transition-all duration-1000`}
@@ -89,7 +89,7 @@ const Hero = () => {
       </div>
 
       {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-visible pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float" />
         <div className="absolute bottom-40 right-20 w-48 h-48 bg-white/10 rounded-full blur-3xl animate-float animation-delay-1000" />
         <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/5 rounded-full blur-xl animate-float animation-delay-2000" />

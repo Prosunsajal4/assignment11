@@ -90,7 +90,9 @@ const Navbar = () => {
 
     if (query.length > 2) {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/books`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/books`,
+        );
         const books = response.data || [];
         const filtered = books.filter((b) =>
           b.name.toLowerCase().includes(query.toLowerCase()),

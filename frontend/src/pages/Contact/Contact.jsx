@@ -201,7 +201,7 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-              <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-6 text-white">
+            <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-6 text-white">
               <h3 className="font-bold text-xl mb-4">Follow Us</h3>
               <div className="flex gap-4">
                 {["facebook", "twitter", "instagram", "linkedin"].map(

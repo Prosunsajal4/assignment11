@@ -2,7 +2,8 @@ import { FaBalanceScale, FaTimes } from "react-icons/fa";
 import { useBookComparison } from "../../contexts/BookComparisonContext";
 
 const FloatingComparisonButton = () => {
-  const { compareCount, toggleCompareModal, compareList, removeFromCompare } = useBookComparison();
+  const { compareCount, toggleCompareModal, compareList, removeFromCompare } =
+    useBookComparison();
 
   if (compareCount === 0) return null;
 
@@ -32,7 +33,9 @@ const FloatingComparisonButton = () => {
             ))}
             {compareCount > 3 && (
               <div className="w-12 h-16 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500 text-sm font-medium">+{compareCount - 3}</span>
+                <span className="text-gray-500 text-sm font-medium">
+                  +{compareCount - 3}
+                </span>
               </div>
             )}
           </div>

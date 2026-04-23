@@ -22,8 +22,12 @@ const Newsletter = () => {
     <section className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-3xl mx-auto px-4">
         <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-lg p-8 text-center">
-          <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Join our Newsletter</h3>
-          <p className="text-gray-500 dark:text-gray-400 mb-6">Weekly book picks and exclusive deals.</p>
+          <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+            Join our Newsletter
+          </h3>
+          <p className="text-gray-500 dark:text-gray-400 mb-6">
+            Weekly book picks and exclusive deals.
+          </p>
 
           <form onSubmit={handleSubmit} className="flex gap-2">
             <input

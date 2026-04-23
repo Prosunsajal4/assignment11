@@ -42,8 +42,8 @@ const LatestBooks = () => {
         <span className="inline-block px-4 py-2 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full mb-4">
           📚 Fresh Arrivals
         </span>
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-        Latest{" "}
+        <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          Latest{" "}
           <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
             Books
           </span>

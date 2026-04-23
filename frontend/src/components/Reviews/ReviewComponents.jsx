@@ -1,8 +1,21 @@
-import { FaStar, FaThumbsUp, FaCheckCircle, FaEdit, FaTrash, FaFlag } from "react-icons/fa";
+import {
+  FaStar,
+  FaThumbsUp,
+  FaCheckCircle,
+  FaEdit,
+  FaTrash,
+  FaFlag,
+} from "react-icons/fa";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
-const StarRating = ({ rating, maxStars = 5, size = "md", interactive = false, onRate }) => {
+const StarRating = ({
+  rating,
+  maxStars = 5,
+  size = "md",
+  interactive = false,
+  onRate,
+}) => {
   const [hoverRating, setHoverRating] = useState(0);
 
   const sizeClasses = {
@@ -31,7 +44,9 @@ const StarRating = ({ rating, maxStars = 5, size = "md", interactive = false, on
           >
             <FaStar
               className={`${sizeClasses[size]} ${
-                isFilled ? "text-yellow-400 fill-current" : "text-gray-300 dark:text-gray-600"
+                isFilled
+                  ? "text-yellow-400 fill-current"
+                  : "text-gray-300 dark:text-gray-600"
               }`}
             />
           </button>
@@ -41,7 +56,14 @@ const StarRating = ({ rating, maxStars = 5, size = "md", interactive = false, on
   );
 };
 
-const ReviewCard = ({ review, onLike, onHelpful, onEdit, onDelete, isOwner }) => {
+const ReviewCard = ({
+  review,
+  onLike,
+  onHelpful,
+  onEdit,
+  onDelete,
+  isOwner,
+}) => {
   const { user } = useAuth();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -50,8 +72,8 @@ const ReviewCard = ({ review, onLike, onHelpful, onEdit, onDelete, isOwner }) =>
   const displayComment = isExpanded
     ? review.comment
     : shouldTruncate
-    ? review.comment?.slice(0, truncateLength) + "..."
-    : review.comment;
+      ? review.comment?.slice(0, truncateLength) + "..."
+      : review.comment;
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow">
@@ -174,7 +196,10 @@ const ReviewForm = ({ onSubmit, initialData = null, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6"
+    >
       <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
         {initialData ? "Edit your review" : "Write a review"}
       </h3>
@@ -184,12 +209,7 @@ const ReviewForm = ({ onSubmit, initialData = null, onCancel }) => {
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Your Rating
         </label>
-        <StarRating
-          rating={rating}
-          interactive
-          onRate={setRating}
-          size="lg"
-        />
+        <StarRating rating={rating} interactive onRate={setRating} size="lg" />
         {rating === 0 && (
           <p className="text-sm text-red-500 mt-1">Please select a rating</p>
         )}
@@ -217,7 +237,11 @@ const ReviewForm = ({ onSubmit, initialData = null, onCancel }) => {
           disabled={rating === 0 || isSubmitting}
           className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? "Submitting..." : initialData ? "Update Review" : "Submit Review"}
+          {isSubmitting
+            ? "Submitting..."
+            : initialData
+              ? "Update Review"
+              : "Submit Review"}
         </button>
         {onCancel && (
           <button
@@ -254,7 +278,8 @@ const ReviewStats = ({ stats }) => {
         <div className="flex-1 space-y-2">
           {[5, 4, 3, 2, 1].map((star) => {
             const count = ratingDistribution[star] || 0;
-            const percentage = totalReviews > 0 ? (count / totalReviews) * 100 : 0;
+            const percentage =
+              totalReviews > 0 ? (count / totalReviews) * 100 : 0;
 
             return (
               <div key={star} className="flex items-center gap-3">

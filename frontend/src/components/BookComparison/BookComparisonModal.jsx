@@ -68,7 +68,12 @@ const BookComparisonModal = () => {
               </p>
             </div>
           ) : (
-            <div className="grid gap-4" style={{ gridTemplateColumns: `200px repeat(${compareList.length}, 1fr)` }}>
+            <div
+              className="grid gap-4"
+              style={{
+                gridTemplateColumns: `200px repeat(${compareList.length}, 1fr)`,
+              }}
+            >
               {/* Row Labels */}
               <div className="space-y-4">
                 <div className="h-48" /> {/* Spacer for image row */}
@@ -121,7 +126,9 @@ const BookComparisonModal = () => {
                           {book[field.key]}
                         </button>
                       ) : (
-                        <span className={`${field.truncate ? "line-clamp-2 text-sm" : ""}`}>
+                        <span
+                          className={`${field.truncate ? "line-clamp-2 text-sm" : ""}`}
+                        >
                           {field.format
                             ? field.format(book[field.key])
                             : book[field.key] || "N/A"}

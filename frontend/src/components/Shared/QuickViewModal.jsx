@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaTimes, FaHeart, FaShoppingCart, FaShare, FaCheck, FaStar } from "react-icons/fa";
+import {
+  FaTimes,
+  FaHeart,
+  FaShoppingCart,
+  FaShare,
+  FaCheck,
+  FaStar,
+} from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import useWishlist from "../../hooks/useWishlist";
 import toast from "react-hot-toast";
@@ -40,7 +47,9 @@ const QuickViewModal = ({ book, isOpen, onClose }) => {
         url: window.location.origin + `/book/${book._id}`,
       });
     } else {
-      navigator.clipboard.writeText(window.location.origin + `/book/${book._id}`);
+      navigator.clipboard.writeText(
+        window.location.origin + `/book/${book._id}`,
+      );
       toast.success("Link copied to clipboard");
     }
   };
@@ -55,12 +64,16 @@ const QuickViewModal = ({ book, isOpen, onClose }) => {
             alt={book.name}
             className="w-full h-64 md:h-full object-cover"
           />
-          
+
           {/* Badges */}
           <div className="absolute top-4 left-4 flex flex-col gap-2">
             {book.originalPrice > book.price && (
               <span className="px-3 py-1 bg-red-500 text-white rounded-full text-sm font-bold">
-                {Math.round(((book.originalPrice - book.price) / book.originalPrice) * 100)}% OFF
+                {Math.round(
+                  ((book.originalPrice - book.price) / book.originalPrice) *
+                    100,
+                )}
+                % OFF
               </span>
             )}
             <span className="px-3 py-1 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-semibold">
@@ -140,16 +153,16 @@ const QuickViewModal = ({ book, isOpen, onClose }) => {
                 book.quantity > 10
                   ? "bg-green-500"
                   : book.quantity > 0
-                  ? "bg-yellow-500"
-                  : "bg-red-500"
+                    ? "bg-yellow-500"
+                    : "bg-red-500"
               }`}
             />
             <span className="text-sm text-gray-600 dark:text-gray-400">
               {book.quantity > 10
                 ? "In Stock"
                 : book.quantity > 0
-                ? `Only ${book.quantity} left`
-                : "Out of Stock"}
+                  ? `Only ${book.quantity} left`
+                  : "Out of Stock"}
             </span>
           </div>
 
@@ -167,7 +180,9 @@ const QuickViewModal = ({ book, isOpen, onClose }) => {
               </button>
               <span className="w-8 text-center font-medium">{quantity}</span>
               <button
-                onClick={() => setQuantity(Math.min(book.quantity, quantity + 1))}
+                onClick={() =>
+                  setQuantity(Math.min(book.quantity, quantity + 1))
+                }
                 className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
                 +

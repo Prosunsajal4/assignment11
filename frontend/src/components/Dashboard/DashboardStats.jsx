@@ -32,8 +32,16 @@ const StatsCard = ({
     cyan: "bg-cyan-50 dark:bg-cyan-900/20",
   };
 
+  const iconColorClasses = {
+    indigo: "text-indigo-600 dark:text-indigo-400",
+    emerald: "text-emerald-600 dark:text-emerald-400",
+    amber: "text-amber-600 dark:text-amber-400",
+    rose: "text-rose-600 dark:text-rose-400",
+    cyan: "text-cyan-600 dark:text-cyan-400",
+  };
+
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
       {/* Gradient Background Accent */}
       <div
         className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${colorClasses[color]} opacity-10 rounded-bl-full`}
@@ -45,11 +53,13 @@ const StatsCard = ({
           <div
             className={`w-14 h-14 rounded-2xl ${bgClasses[color]} flex items-center justify-center`}
           >
-            {icon && (
-              <icon
-                className={`w-7 h-7 text-${color}-600 dark:text-${color}-400`}
-              />
-            )}
+            {icon &&
+              (() => {
+                const IconComp = icon;
+                return (
+                  <IconComp className={`w-7 h-7 ${iconColorClasses[color]}`} />
+                );
+              })()}
           </div>
 
           {/* Trend */}
