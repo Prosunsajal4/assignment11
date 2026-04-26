@@ -160,12 +160,13 @@ const Hero = () => {
           {/* Hero Image/Visual */}
           <div className="hidden lg:block relative">
             <div className="relative">
-              {/* Main Image Container */}
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+              {/* Main Image Container - make overflow visible to avoid cropping rotated image and responsive height */}
+              <div className="relative rounded-3xl overflow-visible shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
                 <img
                   src={current.image}
                   alt="Books"
-                  className="w-full h-[500px] object-cover"
+                  style={{ height: 'min(60vh,600px)' }}
+                  className="w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
