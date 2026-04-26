@@ -110,6 +110,8 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-haspopup="menu"
+                aria-expanded={isOpen}
                 className="flex items-center gap-2 p-2 px-3 border-2 border-gray-200 dark:border-gray-700 rounded-full hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-md transition-all duration-200"
               >
                 <AiOutlineMenu className="text-gray-600 dark:text-gray-300" />
