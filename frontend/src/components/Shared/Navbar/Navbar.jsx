@@ -1,6 +1,6 @@
 import Container from "../Container";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import avatarImg from "../../../assets/images/placeholder.jpg";
@@ -18,6 +18,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
@@ -42,6 +43,25 @@ const Navbar = () => {
       localStorage.setItem("theme", theme);
     }
   }, [theme]);
+
+  // Close menu on outside click or Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const onDocumentClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    const onKey = (e) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("click", onDocumentClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("click", onDocumentClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen]);
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -125,7 +145,12 @@ const Navbar = () => {
 
               {/* Dropdown Menu */}
               {isOpen && (
-                <div className="absolute right-0 top-14 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden animate-fadeIn">
+                <div
+                  ref={menuRef}
+                  role="menu"
+                  aria-label="User menu"
+                  className="absolute right-0 top-14 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden animate-fadeIn"
+                >
                   {user ? (
                     <>
                       {/* User Info */}
