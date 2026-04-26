@@ -31,6 +31,8 @@ class ModernErrorBoundary extends Component {
     if (this.state.hasError) {
       return (
         <motion.div
+          role="alert"
+          aria-live="assertive"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4"
