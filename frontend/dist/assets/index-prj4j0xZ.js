@@ -1,1 +1,0 @@
-import{d as s}from"./index-ZqFW1pI1.js";const r=async t=>{const a=new FormData;a.append("image",t);const{data:e}=await s.post("https://api.imgbb.com/1/upload?key=2e677f6c98da3fc91ea6c3f4ade89958",a);return e?.data?.display_url},p=async t=>{const{data:a}=await s.post("https://book-courier-backend-j4633kte6-prosuns-projects.vercel.app/user",t);return a};export{r as i,p as s};
