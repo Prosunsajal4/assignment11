@@ -119,7 +119,8 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <nav aria-label="Footer Quick Links">
+            <div>
             <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -134,10 +135,12 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+            </div>
+          </nav>
 
           {/* Support Links */}
-          <div>
+          <nav aria-label="Footer Support Links">
+            <div>
             <h3 className="font-bold text-lg mb-6 text-white">Support</h3>
             <ul className="space-y-3">
               {supportLinks.map((link) => (
@@ -152,10 +155,12 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+            </div>
+          </nav>
 
           {/* Legal Links */}
-          <div>
+          <nav aria-label="Footer Legal Links">
+            <div>
             <h3 className="font-bold text-lg mb-6 text-white">Legal</h3>
             <ul className="space-y-3">
               {legalLinks.map((link, index) => (
@@ -170,7 +175,8 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+            </div>
+          </nav>
 
           {/* Contact Info */}
           <div>
@@ -225,6 +231,15 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Back to top */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Back to top"
+        className="fixed bottom-6 right-6 w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+      >
+        ↑
+      </button>
     </footer>
   );
 };
