@@ -10,6 +10,8 @@ The project emphasizes a clean, modern UI, fully responsive layout, and user-cen
 
 ## 📝 Project Overview
 
+**Last updated:** 2026-04-29
+
 BookCourier allows users to explore a book delivery service through a library-style interface.  
 The project demonstrates:
 
