@@ -180,6 +180,35 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
+            <div className="mb-10">
+              <h3 className="font-bold text-lg mb-4 text-white">Newsletter</h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Get monthly reading picks, author spotlights, and delivery deals.
+              </p>
+              <form
+                className="flex flex-col gap-3"
+                onSubmit={(event) => event.preventDefault()}
+              >
+                <label className="sr-only" htmlFor="footer-newsletter-email">
+                  Email address
+                </label>
+                <input
+                  id="footer-newsletter-email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  className="w-full rounded-xl bg-gray-800 border border-gray-700 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-indigo-500"
+                />
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors"
+                >
+                  Join the list
+                </button>
+              </form>
+            </div>
+
             <h3 className="font-bold text-lg mb-6 text-white">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
