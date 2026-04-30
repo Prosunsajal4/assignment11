@@ -121,60 +121,60 @@ const Footer = () => {
           {/* Quick Links */}
           <nav aria-label="Footer Quick Links">
             <div>
-            <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              <h3 className="font-bold text-lg mb-6 text-white">Quick Links</h3>
+              <ul className="space-y-3">
+                {quickLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </nav>
 
           {/* Support Links */}
           <nav aria-label="Footer Support Links">
             <div>
-            <h3 className="font-bold text-lg mb-6 text-white">Support</h3>
-            <ul className="space-y-3">
-              {supportLinks.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <span className="w-1.5 h-1.5 bg-purple-500 rounded-full" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              <h3 className="font-bold text-lg mb-6 text-white">Support</h3>
+              <ul className="space-y-3">
+                {supportLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 bg-purple-500 rounded-full" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </nav>
 
           {/* Legal Links */}
           <nav aria-label="Footer Legal Links">
             <div>
-            <h3 className="font-bold text-lg mb-6 text-white">Legal</h3>
-            <ul className="space-y-3">
-              {legalLinks.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.to}
-                    className="text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2"
-                  >
-                    <span className="w-1.5 h-1.5 bg-pink-500 rounded-full" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+              <h3 className="font-bold text-lg mb-6 text-white">Legal</h3>
+              <ul className="space-y-3">
+                {legalLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      to={link.to}
+                      className="text-gray-400 hover:text-indigo-400 transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 bg-pink-500 rounded-full" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </nav>
 
@@ -183,7 +183,8 @@ const Footer = () => {
             <div className="mb-10">
               <h3 className="font-bold text-lg mb-4 text-white">Newsletter</h3>
               <p className="text-gray-400 text-sm mb-4">
-                Get monthly reading picks, author spotlights, and delivery deals.
+                Get monthly reading picks, author spotlights, and delivery
+                deals.
               </p>
               <form
                 className="flex flex-col gap-3"
