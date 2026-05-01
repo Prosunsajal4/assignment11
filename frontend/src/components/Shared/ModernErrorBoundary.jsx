@@ -65,7 +65,13 @@ class ModernErrorBoundary extends Component {
                     <stop offset="100%" stopColor="#f43f5e" />
                   </linearGradient>
                 </defs>
-                <circle cx="60" cy="60" r="54" fill="url(#warnGlow)" opacity="0.15" />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="url(#warnGlow)"
+                  opacity="0.15"
+                />
                 <polygon
                   points="60,16 110,104 10,104"
                   fill="url(#warnGlow)"
@@ -76,6 +82,15 @@ class ModernErrorBoundary extends Component {
                 <rect x="56" y="44" width="8" height="32" rx="4" fill="#fff" />
                 <circle cx="60" cy="88" r="5" fill="#fff" />
               </svg>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.28 }}
+              className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-amber-700 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-200"
+            >
+              We're on it
             </motion.div>
 
             <motion.h1
