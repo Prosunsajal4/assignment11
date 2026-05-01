@@ -137,19 +137,35 @@ class ModernErrorBoundary extends Component {
             >
               <motion.button
                 onClick={this.handleRetry}
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
+                <svg
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                  fill="currentColor"
+                >
+                  <path d="M10 3a7 7 0 0 0-6.65 4.75 1 1 0 1 0 1.9.62A5 5 0 1 1 6 13h-.6l1.3-1.3a1 1 0 1 0-1.4-1.4l-3 3a1 1 0 0 0 0 1.4l3 3a1 1 0 1 0 1.4-1.4L5.4 15H6a7 7 0 1 0 4-12Z" />
+                </svg>
                 Try Again
               </motion.button>
 
               <motion.button
                 onClick={() => (window.location.href = "/")}
-                className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 bg-white/70 px-6 py-3 font-semibold text-gray-800 shadow-lg backdrop-blur transition-all duration-200 hover:bg-white/90 hover:shadow-xl dark:border-white/10 dark:bg-white/10 dark:text-white"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
+                <svg
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                  className="h-4 w-4"
+                  fill="currentColor"
+                >
+                  <path d="M10.7 2.6a1 1 0 0 0-1.4 0l-7 6.4a1 1 0 0 0 1.34 1.48L4 10.2V16a2 2 0 0 0 2 2h2.5a.5.5 0 0 0 .5-.5V13h2v4.5a.5.5 0 0 0 .5.5H14a2 2 0 0 0 2-2v-5.8l.36.28A1 1 0 0 0 17.7 9Z" />
+                </svg>
                 Go Home
               </motion.button>
             </motion.div>
