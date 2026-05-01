@@ -27,6 +27,21 @@ class ModernErrorBoundary extends Component {
     this.setState({ hasError: false, error: null, errorInfo: null });
   };
 
+  handleCopyError = async () => {
+    const errorText = [
+      this.state.error?.toString(),
+      this.state.errorInfo?.componentStack,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    if (!errorText) return;
+
+    if (navigator?.clipboard?.writeText) {
+      await navigator.clipboard.writeText(errorText);
+    }
+  };
+
   render() {
     if (this.state.hasError) {
       return (
@@ -122,6 +137,15 @@ class ModernErrorBoundary extends Component {
                 <summary className="cursor-pointer font-semibold text-red-600 dark:text-red-400 mb-2">
                   Error Details (Development Only)
                 </summary>
+                <div className="mb-3 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={this.handleCopyError}
+                    className="rounded-full border border-red-200 bg-white px-3 py-1 text-xs font-semibold text-red-600 transition hover:bg-red-50 dark:border-red-400/30 dark:bg-gray-800 dark:text-red-300"
+                  >
+                    Copy error details
+                  </button>
+                </div>
                 <pre className="whitespace-pre-wrap text-red-600 dark:text-red-400">
                   {this.state.error?.toString()}
                   {this.state.errorInfo?.componentStack}
