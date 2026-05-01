@@ -51,9 +51,31 @@ class ModernErrorBoundary extends Component {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="text-6xl mb-6"
+              className="mb-6"
             >
-              🚨
+              <svg
+                viewBox="0 0 120 120"
+                role="img"
+                aria-label="Warning illustration"
+                className="mx-auto h-20 w-20"
+              >
+                <defs>
+                  <linearGradient id="warnGlow" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#f97316" />
+                    <stop offset="100%" stopColor="#f43f5e" />
+                  </linearGradient>
+                </defs>
+                <circle cx="60" cy="60" r="54" fill="url(#warnGlow)" opacity="0.15" />
+                <polygon
+                  points="60,16 110,104 10,104"
+                  fill="url(#warnGlow)"
+                  stroke="#fb7185"
+                  strokeWidth="3"
+                  strokeLinejoin="round"
+                />
+                <rect x="56" y="44" width="8" height="32" rx="4" fill="#fff" />
+                <circle cx="60" cy="88" r="5" fill="#fff" />
+              </svg>
             </motion.div>
 
             <motion.h1
