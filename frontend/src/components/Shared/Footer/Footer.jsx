@@ -87,12 +87,15 @@ const Footer = () => {
         <div className="glass-dark rounded-3xl px-6 py-8 md:px-10 md:py-10 border border-white/10 shadow-2xl">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div>
-              <p className="uppercase tracking-[0.3em] text-xs text-indigo-300">Curated routes</p>
+              <p className="uppercase tracking-[0.3em] text-xs text-indigo-300">
+                Curated routes
+              </p>
               <h2 className="mt-3 text-3xl md:text-4xl font-['Fraunces'] font-semibold text-white">
                 Find your next reading path in minutes.
               </h2>
               <p className="mt-3 text-gray-300 max-w-2xl">
-                Mix librarian picks, indie gems, and delivery alerts into one smooth shelf.
+                Mix librarian picks, indie gems, and delivery alerts into one
+                smooth shelf.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
@@ -113,15 +116,21 @@ const Footer = () => {
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
             <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-4">
               <p className="text-white font-semibold">Reader-first delivery</p>
-              <p className="text-gray-300 mt-2">Smart routing for same-week arrivals.</p>
+              <p className="text-gray-300 mt-2">
+                Smart routing for same-week arrivals.
+              </p>
             </div>
             <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-4">
               <p className="text-white font-semibold">Live inventory sync</p>
-              <p className="text-gray-300 mt-2">Know what is ready to ship today.</p>
+              <p className="text-gray-300 mt-2">
+                Know what is ready to ship today.
+              </p>
             </div>
             <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-4">
               <p className="text-white font-semibold">Community favorites</p>
-              <p className="text-gray-300 mt-2">Ratings that surface hidden gems.</p>
+              <p className="text-gray-300 mt-2">
+                Ratings that surface hidden gems.
+              </p>
             </div>
           </div>
         </div>
@@ -172,7 +181,9 @@ const Footer = () => {
           {/* Quick Links */}
           <nav aria-label="Footer Quick Links">
             <div>
-              <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">Quick Links</h3>
+              <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">
+                Quick Links
+              </h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.to}>
@@ -192,7 +203,9 @@ const Footer = () => {
           {/* Support Links */}
           <nav aria-label="Footer Support Links">
             <div>
-              <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">Support</h3>
+              <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">
+                Support
+              </h3>
               <ul className="space-y-3">
                 {supportLinks.map((link) => (
                   <li key={link.to}>
@@ -212,7 +225,9 @@ const Footer = () => {
           {/* Legal Links */}
           <nav aria-label="Footer Legal Links">
             <div>
-              <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">Legal</h3>
+              <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">
+                Legal
+              </h3>
               <ul className="space-y-3">
                 {legalLinks.map((link, index) => (
                   <li key={index}>
@@ -232,7 +247,9 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <div className="mb-10">
-              <h3 className="font-['Fraunces'] font-semibold text-lg mb-4 text-white">Newsletter</h3>
+              <h3 className="font-['Fraunces'] font-semibold text-lg mb-4 text-white">
+                Newsletter
+              </h3>
               <p className="text-gray-400 text-sm mb-4">
                 Get monthly reading picks, author spotlights, and delivery
                 deals.
@@ -261,7 +278,9 @@ const Footer = () => {
               </form>
             </div>
 
-            <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">Contact Us</h3>
+            <h3 className="font-['Fraunces'] font-semibold text-lg mb-6 text-white">
+              Contact Us
+            </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <div className="w-10 h-10 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 border border-white/10">
