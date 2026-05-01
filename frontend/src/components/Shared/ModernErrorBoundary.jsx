@@ -35,8 +35,12 @@ class ModernErrorBoundary extends Component {
           aria-live="assertive"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4"
+          className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#fff7ed_0%,#fefce8_35%,#f1f5ff_100%)] dark:bg-[linear-gradient(135deg,#0b0f19_0%,#111827_45%,#0f172a_100%)] p-4"
         >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-70 dark:opacity-40 bg-[radial-gradient(circle_at_20%_15%,rgba(255,122,89,0.25),transparent_40%),radial-gradient(circle_at_85%_10%,rgba(99,102,241,0.25),transparent_35%),radial-gradient(circle_at_10%_85%,rgba(16,185,129,0.22),transparent_40%)]"
+          />
           <motion.div
             initial={{ y: 50 }}
             animate={{ y: 0 }}
