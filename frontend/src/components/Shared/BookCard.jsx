@@ -1,14 +1,15 @@
 import { memo, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { FaHeart, FaEye, FaStar } from "react-icons/fa";
 
 const BookCard = memo(({ book, index = 0 }) => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isWishlisted, setIsWishlisted] = useState(false);
   const imgRef = useRef(null);
 
-  // Modern: Intersection Observer for lazy loading
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -27,43 +28,13 @@ const BookCard = memo(({ book, index = 0 }) => {
     return () => observer.disconnect();
   }, []);
 
-  // Modern: Staggered animation variants
   const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      scale: 0.9,
-    },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
-  };
-
-  const hoverVariants = {
-    hover: {
-      y: -8,
-      scale: 1.02,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const imageVariants = {
-    hover: {
-      scale: 1.1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.5, delay: index * 0.08, ease: "easeOut" },
     },
   };
 
@@ -72,128 +43,132 @@ const BookCard = memo(({ book, index = 0 }) => {
       variants={cardVariants}
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
-      whileHover="hover"
-      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform cursor-pointer"
+      className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer border border-gray-100 dark:border-gray-700"
       onClick={() => navigate(`/book/${book._id}`)}
     >
       {/* Image Container */}
-      <motion.div
-        className="relative h-72 overflow-hidden"
-        variants={hoverVariants}
-      >
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
-          variants={imageVariants}
-        />
+      <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-gray-700">
         <motion.img
           ref={imgRef}
           src={isVisible ? book.image : ""}
           alt={book.name}
-          className={`w-full h-full object-cover ${
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
             imageLoaded ? "opacity-100" : "opacity-0"
           }`}
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
-          variants={imageVariants}
-          whileHover="hover"
         />
-        {/* Modern: Skeleton loader while image loads */}
+
         {!imageLoaded && (
-          <motion.div
-            className="absolute inset-0 bg-gray-200 animate-pulse"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: imageLoaded ? 0 : 1 }}
-            transition={{ duration: 0.3 }}
-          />
+          <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse" />
         )}
 
-        {/* Animated Category Badge */}
-        <motion.div
-          className="absolute top-4 left-4 z-20"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 + index * 0.1 }}
-        >
-          <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-indigo-600">
+        {/* Gradient Overlay on Hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        {/* Category Badge */}
+        <div className="absolute top-3 left-3 z-10">
+          <span className="px-3 py-1.5 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full text-xs font-semibold text-indigo-600 dark:text-indigo-400 shadow-sm">
             {book.category}
           </span>
-        </motion.div>
+        </div>
 
-        {/* Animated Price Badge */}
-        <motion.div
-          className="absolute top-4 right-4 z-20"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4 + index * 0.1 }}
-        >
+        {/* Quick Actions - Show on Hover */}
+        <div className="absolute top-3 right-3 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsWishlisted(!isWishlisted);
+            }}
+            className={`w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-md shadow-lg transition-all ${
+              isWishlisted
+                ? "bg-pink-500 text-white"
+                : "bg-white/90 dark:bg-gray-800/90 text-gray-600 dark:text-gray-300 hover:bg-pink-50 hover:text-pink-500"
+            }`}
+            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <FaHeart className="text-sm" />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/book/${book._id}`);
+            }}
+            className="w-9 h-9 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-md text-gray-600 dark:text-gray-300 flex items-center justify-center hover:bg-indigo-50 hover:text-indigo-500 shadow-lg transition-all"
+            aria-label="Quick view"
+          >
+            <FaEye className="text-sm" />
+          </button>
+        </div>
+
+        {/* Price Badge */}
+        <div className="absolute bottom-3 left-3 z-10 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
           <span className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full text-sm font-bold text-white shadow-lg">
             ${book.price}
           </span>
-        </motion.div>
+        </div>
 
-        {/* Animated Stock Status */}
-        <motion.div
-          className="absolute bottom-4 left-4 z-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 + index * 0.1 }}
-        >
+        {/* Stock Status */}
+        <div className="absolute bottom-3 right-3 z-10">
           <span
-            className={`px-3 py-1 rounded-full text-xs font-semibold ${
+            className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
               book.quantity > 5
-                ? "bg-green-100 text-green-700"
+                ? "bg-green-100/90 text-green-700 backdrop-blur-sm"
                 : book.quantity > 0
-                  ? "bg-yellow-100 text-yellow-700"
-                  : "bg-red-100 text-red-700"
+                  ? "bg-amber-100/90 text-amber-700 backdrop-blur-sm"
+                  : "bg-red-100/90 text-red-700 backdrop-blur-sm"
             }`}
           >
-            {book.quantity > 0 ? `${book.quantity} in stock` : "Out of stock"}
+            {book.quantity > 0 ? `${book.quantity} left` : "Out of stock"}
           </span>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Content */}
-      <motion.div
-        className="p-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 + index * 0.1 }}
-      >
-        <motion.h3
-          className="font-bold text-xl text-gray-800 mb-2 line-clamp-1 group-hover:text-indigo-600 transition-colors"
-          whileHover={{ scale: 1.02 }}
-        >
+      <div className="p-5">
+        {/* Rating */}
+        <div className="flex items-center gap-1 mb-2">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <FaStar
+              key={star}
+              className={`text-xs ${
+                star <= (book.rating || 4)
+                  ? "text-amber-400"
+                  : "text-gray-300 dark:text-gray-600"
+              }`}
+            />
+          ))}
+          <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">
+            ({book.rating || 4.0})
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="font-bold text-lg text-gray-800 dark:text-white mb-1.5 line-clamp-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
           {book.name}
-        </motion.h3>
-        <p className="text-gray-500 text-sm line-clamp-2 mb-4">
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 mb-4 leading-relaxed">
           {book.description ||
             "Discover an amazing reading experience with this carefully selected book."}
         </p>
 
         {/* Seller Info */}
         {book.seller && (
-          <motion.div
-            className="flex items-center gap-2 mb-4 pb-4 border-b border-gray-100"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 + index * 0.1 }}
-          >
+          <div className="flex items-center gap-2.5 mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
             <img
               src={book.seller.image || "https://via.placeholder.com/32"}
               alt={book.seller.name}
-              className="w-8 h-8 rounded-full object-cover ring-2 ring-gray-100"
+              className="w-8 h-8 rounded-full object-cover ring-2 ring-gray-100 dark:ring-gray-600"
               loading="lazy"
             />
-            <div>
-              <span className="text-sm text-gray-700 font-medium">
+            <div className="flex-1 min-w-0">
+              <p className="text-sm text-gray-700 dark:text-gray-200 font-medium truncate">
                 {book.seller.name || "Unknown"}
-              </span>
-              <span className="flex items-center gap-1 text-xs text-green-600">
-                <svg
-                  className="w-3 h-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+              </p>
+              <p className="text-xs text-green-600 dark:text-green-400 flex items-center gap-1">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -201,32 +176,20 @@ const BookCard = memo(({ book, index = 0 }) => {
                   />
                 </svg>
                 Verified
-              </span>
+              </p>
             </div>
-          </motion.div>
+          </div>
         )}
 
-        {/* Animated Action Button */}
-        <motion.button
-          className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform transition-all duration-200 flex items-center justify-center gap-2"
-          whileHover={{
-            scale: 1.05,
-            boxShadow:
-              "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        {/* Action Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/book/${book._id}`);
           }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 + index * 0.1 }}
+          className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg hover:from-indigo-500 hover:to-purple-500 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
         >
-          <motion.svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -239,18 +202,10 @@ const BookCard = memo(({ book, index = 0 }) => {
               strokeWidth={2}
               d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
             />
-          </motion.svg>
+          </svg>
           View Details
-        </motion.button>
-      </motion.div>
-
-      {/* Animated Hover Border Effect */}
-      <motion.div
-        className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-indigo-500/30 transition-colors duration-300 pointer-events-none"
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-      />
+        </button>
+      </div>
     </motion.div>
   );
 });
