@@ -340,18 +340,18 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
 
-                {/* Floating Cards */}
+                {/* Floating Cards - positioned within bounds */}
                 {current.floatingCards.map((card, i) => {
                   const positions = [
-                    { top: "6rem", left: "-2.5rem", right: "auto", bottom: "auto" },
-                    { top: "auto", left: "auto", right: "-1.5rem", bottom: "9rem" },
-                    { top: "auto", left: "3rem", right: "auto", bottom: "-1.5rem" },
+                    { top: "5rem", left: "-0.5rem" },
+                    { top: "auto", right: "-0.5rem", bottom: "8rem" },
+                    { top: "auto", left: "1.5rem", bottom: "-0.5rem" },
                   ];
                   const delays = [0, 0.2, 0.4];
                   return (
                     <motion.div
                       key={i}
-                      className="absolute bg-white/90 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-white/30 z-10"
+                      className="absolute bg-white/90 backdrop-blur-xl rounded-2xl p-3 shadow-xl border border-white/30 z-10"
                       style={positions[i]}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -361,12 +361,12 @@ const Hero = () => {
                         animate={{ y: [0, -6, 0] }}
                         transition={{ duration: 3 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
                       >
-                        <div className="flex items-center gap-3">
-                          <div className={`w-12 h-12 bg-gradient-to-br ${card.gradient} rounded-xl flex items-center justify-center shadow-lg`}>
-                            <card.icon className="text-white text-xl" />
+                        <div className="flex items-center gap-2.5">
+                          <div className={`w-10 h-10 bg-gradient-to-br ${card.gradient} rounded-xl flex items-center justify-center shadow-lg shrink-0`}>
+                            <card.icon className="text-white text-lg" />
                           </div>
                           <div>
-                            <p className="font-semibold text-gray-800 text-sm">{card.title}</p>
+                            <p className="font-semibold text-gray-800 text-xs">{card.title}</p>
                             <p className="text-xs text-gray-500">{card.desc}</p>
                           </div>
                         </div>
