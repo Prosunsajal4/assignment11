@@ -32,30 +32,30 @@ const SellerStatistics = () => {
   return (
     <div className="mt-12">
       <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grow">
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow-md dark:shadow-gray-700">
           <div className="mx-4 rounded-xl overflow-hidden absolute -mt-4 grid h-16 w-16 place-items-center bg-blue-500 text-white">
             📚
           </div>
           <div className="p-4 text-right">
-            <p className="text-sm text-blue-gray-600">Total Books</p>
+            <p className="text-sm text-blue-gray-600 dark:text-gray-400">Total Books</p>
             <h4 className="text-2xl font-semibold">{inventory.length}</h4>
           </div>
         </div>
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow-md dark:shadow-gray-700">
           <div className="mx-4 rounded-xl overflow-hidden absolute -mt-4 grid h-16 w-16 place-items-center bg-green-500 text-white">
             🛒
           </div>
           <div className="p-4 text-right">
-            <p className="text-sm text-blue-gray-600">Total Orders</p>
+            <p className="text-sm text-blue-gray-600 dark:text-gray-400">Total Orders</p>
             <h4 className="text-2xl font-semibold">{orders.length}</h4>
           </div>
         </div>
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 shadow-md dark:shadow-gray-700">
           <div className="mx-4 rounded-xl overflow-hidden absolute -mt-4 grid h-16 w-16 place-items-center bg-orange-500 text-white">
             💰
           </div>
           <div className="p-4 text-right">
-            <p className="text-sm text-blue-gray-600">Total Revenue</p>
+            <p className="text-sm text-blue-gray-600 dark:text-gray-400">Total Revenue</p>
             <h4 className="text-2xl font-semibold">${totalRevenue}</h4>
           </div>
         </div>

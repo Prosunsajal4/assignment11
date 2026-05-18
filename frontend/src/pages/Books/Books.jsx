@@ -118,7 +118,7 @@ const Books = () => {
         </div>
 
         {/* Filters Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-10">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div className="md:col-span-2 relative">
@@ -142,7 +142,7 @@ const Books = () => {
                 placeholder="Search books by name..."
                 value={search}
                 onChange={(e) => handleSearchChange(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white transition-all duration-200"
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-white transition-all duration-200"
               />
               {/* Modern: Show loading indicator when search is being deferred */}
               {isPending && (
@@ -159,7 +159,7 @@ const Books = () => {
                 onChange={(e) =>
                   handleFilterChange(setCategory)(e.target.value)
                 }
-                className="w-full appearance-none pl-4 pr-10 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white transition-all duration-200 cursor-pointer"
+                className="w-full appearance-none pl-4 pr-10 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-white transition-all duration-200 cursor-pointer"
                 disabled={isPending}
               >
                 <option value="">All Categories</option>
@@ -191,7 +191,7 @@ const Books = () => {
               <select
                 value={sort}
                 onChange={(e) => handleFilterChange(setSort)(e.target.value)}
-                className="w-full appearance-none pl-4 pr-10 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white transition-all duration-200 cursor-pointer"
+                className="w-full appearance-none pl-4 pr-10 py-3 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 focus:bg-white dark:focus:bg-gray-600 text-gray-900 dark:text-white transition-all duration-200 cursor-pointer"
                 disabled={isPending}
               >
                 <option value="">Sort by</option>
@@ -218,10 +218,10 @@ const Books = () => {
           </div>
 
           {/* Results Count */}
-          <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
+          <div className="mt-4 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
             <span>
               Showing{" "}
-              <span className="font-semibold text-indigo-600">
+              <span className="font-semibold text-indigo-600 dark:text-indigo-400">
                 {paginatedBooks.length}
               </span>{" "}
               of <span className="font-semibold">{filteredBooks.length}</span>{" "}
@@ -231,7 +231,7 @@ const Books = () => {
               <button
                 onClick={handleClearFilters}
                 disabled={isPending}
-                className="flex items-center gap-1 text-indigo-600 hover:text-indigo-700 font-medium disabled:opacity-50"
+                className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium disabled:opacity-50"
               >
                 <svg
                   className="w-4 h-4"
@@ -286,7 +286,7 @@ const Books = () => {
             <button
               onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1 || isPending}
-              className="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 rounded-xl font-medium text-gray-700 hover:border-indigo-500 hover:text-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl font-medium text-gray-700 dark:text-gray-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
             >
               <svg
                 className="w-5 h-5"
@@ -321,7 +321,7 @@ const Books = () => {
                         className={`w-10 h-10 rounded-xl font-medium transition-all duration-200 disabled:opacity-50 ${
                           currentPage === page
                             ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30"
-                            : "bg-white border-2 border-gray-200 text-gray-700 hover:border-indigo-500 hover:text-indigo-600"
+                            : "bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400"
                         }`}
                       >
                         {page}
@@ -332,7 +332,7 @@ const Books = () => {
                     page === currentPage + 2
                   ) {
                     return (
-                      <span key={page} className="text-gray-400">
+                      <span key={page} className="text-gray-400 dark:text-gray-500">
                         ...
                       </span>
                     );
@@ -347,7 +347,7 @@ const Books = () => {
                 handlePageChange(Math.min(totalPages, currentPage + 1))
               }
               disabled={currentPage === totalPages || isPending}
-              className="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 rounded-xl font-medium text-gray-700 hover:border-indigo-500 hover:text-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl font-medium text-gray-700 dark:text-gray-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
             >
               Next
               <svg

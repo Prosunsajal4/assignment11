@@ -24,7 +24,7 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
 
   return (
     <tr>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
         <div className="flex items-center">
           <div className="shrink-0">
             <div className="block relative">
@@ -38,36 +38,36 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
         </div>
       </td>
 
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">{name}</p>
+      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+        <p className="text-gray-900 dark:text-gray-100">{name}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">{category}</p>
+      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+        <p className="text-gray-900 dark:text-gray-100">{category}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">${price}</p>
+      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+        <p className="text-gray-900 dark:text-gray-100">${price}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">{quantity}</p>
+      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+        <p className="text-gray-900 dark:text-gray-100">{quantity}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">{status}</p>
+      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+        <p className="text-gray-900 dark:text-gray-100">{status}</p>
       </td>
 
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm space-x-2">
+      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm space-x-2">
         <button
           onClick={() => setIsOpen(true)}
-          className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 leading-tight"
+          className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 dark:text-lime-200 leading-tight"
         >
-          <span className="absolute cursor-pointer inset-0 bg-red-200 opacity-50 rounded-full"></span>
+          <span className="absolute cursor-pointer inset-0 bg-red-200 dark:bg-red-800 dark:opacity-40 opacity-50 rounded-full"></span>
           <span className="relative cursor-pointer">Cancel</span>
         </button>
 
         <button
           onClick={() => setReviewOpen(true)}
-          className="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight"
+          className="relative inline-block px-3 py-1 font-semibold text-blue-900 dark:text-blue-200 leading-tight"
         >
-          <span className="absolute inset-0 bg-blue-200 opacity-60 rounded-full"></span>
+          <span className="absolute inset-0 bg-blue-200 dark:bg-blue-800 dark:opacity-40 opacity-60 rounded-full"></span>
           <span className="relative">Review</span>
         </button>
 

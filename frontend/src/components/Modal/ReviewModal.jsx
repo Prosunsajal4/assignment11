@@ -29,8 +29,8 @@ const ReviewModal = ({ isOpen, closeModal, bookId, onReviewed }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-lg transform rounded-xl bg-white p-6 text-left align-middle shadow-xl">
-                <Dialog.Title className="text-lg font-semibold">
+              <Dialog.Panel className="w-full max-w-lg transform rounded-xl bg-white dark:bg-gray-800 p-6 text-left align-middle shadow-xl">
+                <Dialog.Title className="text-lg font-semibold dark:text-white">
                   Write a Review
                 </Dialog.Title>
                 <div className="mt-4">

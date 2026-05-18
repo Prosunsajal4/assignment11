@@ -91,10 +91,10 @@ const MyWishlist = () => {
               >
                 📚
               </motion.div>
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+              <h3 className="text-xl font-semibold text-gray-600 dark:text-gray-300 mb-2">
                 Your wishlist is empty
               </h3>
-              <p className="text-gray-500 mb-6">
+              <p className="text-gray-500 dark:text-gray-400 mb-6">
                 Start adding books you love to your wishlist!
               </p>
               <Link
@@ -134,7 +134,7 @@ const MyWishlist = () => {
                 type: "spring",
                 stiffness: 100,
               }}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center gap-4 hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-indigo-200 group"
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 flex flex-col items-center gap-4 hover:shadow-2xl transition-all duration-300 border border-transparent hover:border-indigo-200 dark:hover:border-indigo-600 group"
             >
               <Link
                 to={`/book/${book._id}`}
@@ -157,14 +157,14 @@ const MyWishlist = () => {
                   />
                 </motion.div>
                 <motion.h3
-                  className="font-bold text-gray-800 text-lg mb-2 text-center line-clamp-2 group-hover:text-indigo-600 transition-colors"
+                  className="font-bold text-gray-800 dark:text-gray-100 text-lg mb-2 text-center line-clamp-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"
                   whileHover={{ scale: 1.02 }}
                 >
                   {book.name}
                 </motion.h3>
-                <p className="text-sm text-gray-500 mb-1">{book.category}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{book.category}</p>
                 <motion.span
-                  className="font-bold text-indigo-600 text-lg"
+                  className="font-bold text-indigo-600 dark:text-indigo-400 text-lg"
                   whileHover={{ scale: 1.1 }}
                 >
                   ${book.price}

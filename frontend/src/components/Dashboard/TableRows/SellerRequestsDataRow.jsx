@@ -19,18 +19,18 @@ const SellerRequestsDataRow = ({ req, refetch }) => {
   }
   return (
     <tr>
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <p className='text-gray-900 '>{req?.email}</p>
+      <td className='px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm'>
+        <p className='text-gray-900 dark:text-gray-100 '>{req?.email}</p>
       </td>
 
-      <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+      <td className='px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm'>
         <span
           onClick={handleRoleUpdate}
-          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'
+          className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 dark:text-green-200 leading-tight'
         >
           <span
             aria-hidden='true'
-            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+            className='absolute inset-0 bg-green-200 dark:bg-green-800 dark:opacity-40 opacity-50 rounded-full'
           ></span>
           <span className='relative'>Make Seller</span>
         </span>

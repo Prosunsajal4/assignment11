@@ -27,7 +27,7 @@ const ManageAllOrders = () => {
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
-        <h2 className="text-xl font-semibold mb-4">All Orders</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">All Orders</h2>
 
         <div className="mb-6 flex flex-wrap gap-2">
           {Object.entries(customerCounts).map(([email, count]) => (
@@ -39,29 +39,29 @@ const ManageAllOrders = () => {
         </div>
 
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-          <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+          <div className="inline-block min-w-full shadow dark:shadow-gray-700 rounded-lg overflow-hidden">
             <table className="min-w-full leading-normal">
               <thead>
                 <tr>
-                  <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">
+                  <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal">
                     Name
                   </th>
-                  <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">
+                  <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal">
                     Customer
                   </th>
-                  <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">
+                  <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal">
                     Orders by Customer
                   </th>
-                  <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">
+                  <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal">
                     Price
                   </th>
-                  <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">
+                  <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal">
                     Quantity
                   </th>
-                  <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">
+                  <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal">
                     Status
                   </th>
-                  <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-left text-sm uppercase font-normal">
+                  <th className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal">
                     Action
                   </th>
                 </tr>

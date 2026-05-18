@@ -40,7 +40,7 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, user, refetch }) => {
             >
               <DialogTitle
                 as='h3'
-                className='text-base/7 font-medium text-black'
+                className='text-base/7 font-medium text-black dark:text-white'
               >
                 Update User Role
               </DialogTitle>
@@ -49,7 +49,7 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, user, refetch }) => {
                   <select
                     value={updatedRole}
                     onChange={e => setUpdatedRole(e.target.value)}
-                    className='w-full my-3 border border-gray-200 rounded-xl px-2 py-3'
+                    className='w-full my-3 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl px-2 py-3'
                     name='role'
                     id=''
                   >
@@ -62,13 +62,13 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, user, refetch }) => {
                   <button
                     onClick={handleRoleUpdate}
                     type='button'
-                    className='cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
+                    className='cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-green-100 dark:bg-green-900/30 px-4 py-2 text-sm font-medium text-green-900 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-800/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2'
                   >
                     Update
                   </button>
                   <button
                     type='button'
-                    className='cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
+                    className='cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-red-100 dark:bg-red-900/30 px-4 py-2 text-sm font-medium text-red-900 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-800/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2'
                     onClick={closeModal}
                   >
                     Cancel

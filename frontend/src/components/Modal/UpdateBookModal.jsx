@@ -90,8 +90,8 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-xl transform rounded-xl bg-white p-6 text-left align-middle shadow-xl">
-                <Dialog.Title className="text-lg font-semibold">
+              <Dialog.Panel className="w-full max-w-xl transform rounded-xl bg-white dark:bg-gray-800 p-6 text-left align-middle shadow-xl">
+                <Dialog.Title className="text-lg font-semibold dark:text-white">
                   Update Book
                 </Dialog.Title>
 
@@ -99,7 +99,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <label className="form-control">
                       <div className="label">
-                        <span className="label-text">Title</span>
+                        <span className="label-text dark:text-gray-300">Title</span>
                       </div>
                       <input
                         name="title"
@@ -111,7 +111,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
                     </label>
                     <label className="form-control">
                       <div className="label">
-                        <span className="label-text">Author</span>
+                        <span className="label-text dark:text-gray-300">Author</span>
                       </div>
                       <input
                         name="author"
@@ -123,7 +123,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
                     </label>
                     <label className="form-control">
                       <div className="label">
-                        <span className="label-text">Category</span>
+                        <span className="label-text dark:text-gray-300">Category</span>
                       </div>
                       <input
                         name="category"
@@ -134,7 +134,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
                     </label>
                     <label className="form-control">
                       <div className="label">
-                        <span className="label-text">Price</span>
+                        <span className="label-text dark:text-gray-300">Price</span>
                       </div>
                       <input
                         type="number"
@@ -148,7 +148,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
                     </label>
                     <label className="form-control">
                       <div className="label">
-                        <span className="label-text">Quantity</span>
+                        <span className="label-text dark:text-gray-300">Quantity</span>
                       </div>
                       <input
                         type="number"
@@ -161,7 +161,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
                     </label>
                     <label className="form-control md:col-span-2">
                       <div className="label">
-                        <span className="label-text">Image URL</span>
+                        <span className="label-text dark:text-gray-300">Image URL</span>
                       </div>
                       <input
                         name="image"
@@ -172,7 +172,7 @@ const UpdateBookModal = ({ isOpen, closeModal, book }) => {
                     </label>
                     <label className="form-control md:col-span-2">
                       <div className="label">
-                        <span className="label-text">Description</span>
+                        <span className="label-text dark:text-gray-300">Description</span>
                       </div>
                       <textarea
                         name="description"

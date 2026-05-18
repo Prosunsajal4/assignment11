@@ -25,20 +25,20 @@ const SellerRequests = () => {
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-          <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+          <div className="inline-block min-w-full shadow dark:shadow-gray-700 rounded-lg overflow-hidden">
             <table className="min-w-full leading-normal">
               <thead>
                 <tr>
                   <th
                     scope="col"
-                    className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                    className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal"
                   >
                     Email
                   </th>
 
                   <th
                     scope="col"
-                    className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
+                    className="px-5 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 text-left text-sm uppercase font-normal"
                   >
                     Action
                   </th>

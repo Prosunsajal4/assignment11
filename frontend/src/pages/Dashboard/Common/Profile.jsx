@@ -62,97 +62,97 @@ const Profile = () => {
   console.log(role, isRoleLoading);
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
+      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
         <img
           alt="book cover"
           src={bookImgUrl}
-          className="w-full mb-4 rounded-t-lg h-56 object-contain bg-lime-50"
+          className="w-full mb-4 rounded-t-lg h-56 object-contain bg-lime-50 dark:bg-gray-700"
         />
         <div className="flex flex-col items-center justify-center p-4 -mt-16">
           <a href="#" className="relative block">
             <img
               alt="profile"
               src={user?.photoURL}
-              className="mx-auto object-cover rounded-full h-24 w-24 border-2 border-white "
+              className="mx-auto object-cover rounded-full h-24 w-24 border-2 border-white dark:border-gray-600 "
             />
           </a>
 
           <p className="p-2 px-4 text-xs text-white bg-lime-500 rounded-full">
             {role}
           </p>
-          <p className="mt-2 text-xl font-medium text-gray-800 ">
+          <p className="mt-2 text-xl font-medium text-gray-800 dark:text-gray-100 ">
             User Id: {user?.uid}
           </p>
           <div className="w-full p-2 mt-4 rounded-lg">
-            <div className="flex flex-wrap items-center justify-between text-sm text-gray-600 ">
+            <div className="flex flex-wrap items-center justify-between text-sm text-gray-600 dark:text-gray-300 ">
               <p className="flex flex-col">
                 Name
-                <span className="font-bold text-gray-600 ">
+                <span className="font-bold text-gray-600 dark:text-gray-300 ">
                   {user?.displayName}
                 </span>
               </p>
               <p className="flex flex-col">
                 Email
-                <span className="font-bold text-gray-600 ">{user?.email}</span>
+                <span className="font-bold text-gray-600 dark:text-gray-300 ">{user?.email}</span>
               </p>
 
               <div>
                 <button
-                  className="bg-lime-500  px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800 block mb-1"
+                  className="bg-lime-500 dark:bg-lime-600 px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800 dark:hover:bg-lime-700 block mb-1"
                   onClick={handleUpdateProfile}
                 >
                   Update Profile
                 </button>
                 {/* Modal Form for Profile Update */}
                 {showForm && (
-                  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
+                  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 dark:bg-opacity-60 z-50">
                     <form
-                      className="bg-white p-6 rounded-lg shadow-lg w-80 flex flex-col gap-4"
+                      className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-80 flex flex-col gap-4"
                       onSubmit={handleFormSubmit}
                     >
-                      <h2 className="text-lg font-bold mb-2 text-center">
+                      <h2 className="text-lg font-bold mb-2 text-center dark:text-white">
                         Update Profile
                       </h2>
-                      <label className="text-sm">Name</label>
+                      <label className="text-sm dark:text-gray-300">Name</label>
                       <input
                         type="text"
                         value={formName}
                         onChange={(e) => setFormName(e.target.value)}
-                        className="border rounded px-2 py-1"
+                        className="border dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded px-2 py-1"
                         required
                       />
-                      <label className="text-sm">Photo URL</label>
+                      <label className="text-sm dark:text-gray-300">Photo URL</label>
                       <input
                         type="text"
                         value={formPhoto}
                         onChange={(e) => setFormPhoto(e.target.value)}
-                        className="border rounded px-2 py-1"
+                        className="border dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded px-2 py-1"
                         required
                       />
                       <img
                         src={formPhoto}
                         alt="Preview"
-                        className="mx-auto rounded-full h-16 w-16 object-cover border"
+                        className="mx-auto rounded-full h-16 w-16 object-cover border dark:border-gray-600"
                         style={{ marginBottom: "8px" }}
                       />
-                      <label className="text-sm">New Password</label>
+                      <label className="text-sm dark:text-gray-300">New Password</label>
                       <input
                         type="password"
                         value={formPassword}
                         onChange={(e) => setFormPassword(e.target.value)}
-                        className="border rounded px-2 py-1"
+                        className="border dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded px-2 py-1"
                         placeholder="Leave blank to keep current"
                       />
                       <div className="flex gap-2 justify-center mt-2">
                         <button
                           type="submit"
-                          className="bg-lime-500 text-white px-4 py-1 rounded hover:bg-lime-700"
+                          className="bg-lime-500 dark:bg-lime-600 text-white px-4 py-1 rounded hover:bg-lime-700 dark:hover:bg-lime-500"
                         >
                           Save
                         </button>
                         <button
                           type="button"
-                          className="bg-gray-300 text-gray-700 px-4 py-1 rounded hover:bg-gray-400"
+                          className="bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-200 px-4 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-500"
                           onClick={() => setShowForm(false)}
                         >
                           Cancel
@@ -162,7 +162,7 @@ const Profile = () => {
                   </div>
                 )}
                 <button
-                  className="bg-lime-500 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800"
+                  className="bg-lime-500 dark:bg-lime-600 px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-lime-800 dark:hover:bg-lime-700"
                   onClick={handleChangePassword}
                 >
                   Change Password
