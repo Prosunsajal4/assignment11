@@ -16,13 +16,16 @@ const CoverageMap = () => {
   useEffect(() => {
     if (mapRef.current && cities.length > 0) {
       mapRef.current.innerHTML = "";
+      // Bangladesh bounds
+      const minLat = 20.5, maxLat = 26.6;
+      const minLng = 88.0, maxLng = 92.7;
       cities.forEach((city) => {
         const dot = document.createElement("div");
         dot.className = "absolute bg-indigo-500 rounded-full animate-pulse";
         dot.style.width = "12px";
         dot.style.height = "12px";
-        dot.style.left = `${city.lng * 2.5 + 40}%`;
-        dot.style.top = `${city.lat * 1.2 - 10}%`;
+        dot.style.left = `${((city.lng - minLng) / (maxLng - minLng)) * 80 + 10}%`;
+        dot.style.top = `${((maxLat - city.lat) / (maxLat - minLat)) * 80 + 10}%`;
         dot.title = city.name;
         mapRef.current.appendChild(dot);
       });
