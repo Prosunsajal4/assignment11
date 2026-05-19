@@ -123,7 +123,7 @@ const BookDetails = () => {
   if (isError || !book)
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center p-8 bg-red-50 rounded-2xl">
+        <div className="text-center p-8 bg-red-50 dark:bg-red-900/20 rounded-2xl">
           <svg
             className="w-16 h-16 text-red-400 mx-auto mb-4"
             fill="none"
@@ -137,10 +137,10 @@ const BookDetails = () => {
               d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             />
           </svg>
-          <h3 className="text-xl font-bold text-red-600 mb-2">
+          <h3 className="text-xl font-bold text-red-600 dark:text-red-400 mb-2">
             Oops! Book Not Found
           </h3>
-          <p className="text-red-500">
+          <p className="text-red-500 dark:text-red-300">
             The book you're looking for doesn't exist or server error occurred.
           </p>
         </div>
@@ -164,7 +164,7 @@ const BookDetails = () => {
           <div className="space-y-4">
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500" />
-              <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
                 <img
                   className="w-full h-[500px] object-cover transform group-hover:scale-105 transition duration-700"
                   src={image}
@@ -223,7 +223,7 @@ const BookDetails = () => {
           <div className="space-y-6">
             {/* Title & Price */}
             <div>
-              <h1 className="text-4xl font-bold text-gray-800 mb-2 leading-tight">
+              <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2 leading-tight">
                 {name}
               </h1>
               <div className="flex items-center gap-4 mb-4">
@@ -242,7 +242,7 @@ const BookDetails = () => {
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
-                  <span className="text-gray-500 ml-2">
+                    <span className="text-gray-500 dark:text-gray-400 ml-2">
                     ({reviews.length} reviews)
                   </span>
                 </div>
@@ -261,8 +261,8 @@ const BookDetails = () => {
             </div>
 
             {/* Description */}
-            <div className="bg-gray-50 rounded-2xl p-6">
-              <h3 className="font-semibold text-gray-700 mb-3 flex items-center gap-2">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6">
+              <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-3 flex items-center gap-2">
                 <svg
                   className="w-5 h-5 text-indigo-500"
                   fill="none"
@@ -278,12 +278,12 @@ const BookDetails = () => {
                 </svg>
                 Description
               </h3>
-              <p className="text-gray-600 leading-relaxed">{description}</p>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
             </div>
 
             {/* Seller Info */}
-            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6">
-              <h3 className="font-semibold text-gray-700 mb-4 flex items-center gap-2">
+            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-2xl p-6">
+              <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-4 flex items-center gap-2">
                 <svg
                   className="w-5 h-5 text-indigo-500"
                   fill="none"
@@ -307,10 +307,10 @@ const BookDetails = () => {
                   src={seller?.image || "https://via.placeholder.com/56"}
                 />
                 <div>
-                  <p className="font-semibold text-gray-800">
+                  <p className="font-semibold text-gray-800 dark:text-white">
                     {seller?.name || "Unknown Seller"}
                   </p>
-                  <p className="text-sm text-gray-500">{seller?.email}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{seller?.email}</p>
                   <div className="flex items-center gap-1 mt-1">
                     <span className="text-green-500">✓</span>
                     <span className="text-xs text-green-600 font-medium">
@@ -350,8 +350,8 @@ const BookDetails = () => {
                   disabled={wishlistLoading}
                   className={`py-4 px-6 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 ${
                     wishlisted
-                      ? "bg-pink-100 text-pink-600 hover:bg-pink-200"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      ? "bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 hover:bg-pink-200 dark:hover:bg-pink-900/50"
+                      : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600"
                   }`}
                 >
                   {wishlistLoading ? (
@@ -377,11 +377,11 @@ const BookDetails = () => {
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <div className="text-center">
-                <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-2">
                   <svg
-                    className="w-5 h-5 text-green-600"
+                    className="w-5 h-5 text-green-600 dark:text-green-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -394,14 +394,14 @@ const BookDetails = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-xs text-gray-600 font-medium">
+                <p className="text-xs text-gray-600 dark:text-gray-300 font-medium">
                   Secure Payment
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-2">
                   <svg
-                    className="w-5 h-5 text-blue-600"
+                    className="w-5 h-5 text-blue-600 dark:text-blue-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -414,14 +414,14 @@ const BookDetails = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-xs text-gray-600 font-medium">
+                <p className="text-xs text-gray-600 dark:text-gray-300 font-medium">
                   Fast Delivery
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-2">
                   <svg
-                    className="w-5 h-5 text-purple-600"
+                    className="w-5 h-5 text-purple-600 dark:text-purple-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -434,7 +434,7 @@ const BookDetails = () => {
                     />
                   </svg>
                 </div>
-                <p className="text-xs text-gray-600 font-medium">
+                <p className="text-xs text-gray-600 dark:text-gray-300 font-medium">
                   100% Authentic
                 </p>
               </div>
@@ -444,9 +444,9 @@ const BookDetails = () => {
 
         {/* Reviews Section - Everyone can see */}
         <div className="mt-16">
-          <div className="bg-white rounded-3xl shadow-xl p-8">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-3">
                 <span className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
                   ⭐
                 </span>
@@ -474,12 +474,12 @@ const BookDetails = () => {
             ) : (
               <div className="space-y-4">
                 {reviews.length === 0 ? (
-                  <div className="text-center py-12 bg-gray-50 rounded-2xl">
+                  <div className="text-center py-12 bg-gray-50 dark:bg-gray-700/50 rounded-2xl">
                     <div className="text-6xl mb-4">📝</div>
-                    <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                    <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2">
                       No Reviews Yet
                     </h3>
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 dark:text-gray-400">
                       Be the first to review this book!
                     </p>
                   </div>
@@ -487,7 +487,7 @@ const BookDetails = () => {
                   reviews.map((review, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-colors"
+                      className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                     >
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -495,7 +495,7 @@ const BookDetails = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-semibold text-gray-800">
+                            <h4 className="font-semibold text-gray-800 dark:text-white">
                               {review.email}
                             </h4>
                             <div className="flex items-center gap-1">
@@ -515,7 +515,7 @@ const BookDetails = () => {
                               ))}
                             </div>
                           </div>
-                          <p className="text-gray-600">{review.review}</p>
+                          <p className="text-gray-600 dark:text-gray-300">{review.review}</p>
                         </div>
                       </div>
                     </div>
@@ -526,14 +526,14 @@ const BookDetails = () => {
 
             {/* Review Form - Only for those who purchased */}
             {hasPaid && (
-              <div className="mt-8 pt-8 border-t border-gray-200">
+              <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <ReviewForm bookId={id} onReviewAdded={refreshReviews} />
               </div>
             )}
 
             {!hasPaid && user?.email && (
-              <div className="mt-8 pt-8 border-t border-gray-200">
-                <p className="text-gray-500 flex items-center justify-center gap-2">
+              <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p className="text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
                   <svg
                     className="w-5 h-5"
                     fill="none"
