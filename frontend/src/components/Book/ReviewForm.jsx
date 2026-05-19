@@ -63,8 +63,8 @@ const ReviewForm = ({ bookId, onReviewAdded }) => {
   const ratingLabels = ["", "Poor", "Fair", "Good", "Very Good", "Excellent"];
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-6 shadow-lg">
-      <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+    <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-indigo-900/30 dark:via-purple-900/30 dark:to-pink-900/30 rounded-2xl p-6 shadow-lg">
+      <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
         <span className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center">
           <svg
             className="w-5 h-5 text-white"
@@ -109,7 +109,7 @@ const ReviewForm = ({ bookId, onReviewAdded }) => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Star Rating */}
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
             Your Rating
           </label>
           <div className="flex items-center gap-1">
@@ -132,14 +132,14 @@ const ReviewForm = ({ bookId, onReviewAdded }) => {
 
         {/* Review Text */}
         <div className="space-y-2">
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200">
             Your Review
           </label>
           <div className="relative">
             <textarea
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 transition-all duration-200 resize-none"
+              className="w-full px-4 py-3 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 transition-all duration-200 resize-none dark:text-white"
               rows={4}
               placeholder="Share your thoughts about this book... What did you like? Would you recommend it?"
               required
