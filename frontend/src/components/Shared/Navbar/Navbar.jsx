@@ -229,6 +229,22 @@ const Navbar = () => {
                           </div>
                         </div>
 
+                        <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+                          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Navigation</p>
+                          <div className="grid grid-cols-2 gap-1">
+                            {navLinks.map((link) => (
+                              <Link
+                                key={link.to}
+                                to={link.to}
+                                onClick={() => setIsOpen(false)}
+                                className="px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
+                              >
+                                {link.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+
                         <div className="p-2">
                           <Link
                             to="/dashboard"
