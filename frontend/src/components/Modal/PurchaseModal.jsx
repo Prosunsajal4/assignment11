@@ -52,22 +52,22 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
-          <DialogPanel className="w-full max-w-md p-8 rounded-2xl bg-white/90">
+          <DialogPanel className="w-full max-w-md p-8 rounded-2xl bg-white/90 dark:bg-gray-800/90">
             <div className="text-center">
-              <h3 className="text-xl font-semibold">Confirm Purchase</h3>
-              <p className="text-sm text-gray-600 mt-2">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">Confirm Purchase</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
                 You will be redirected to payment.
               </p>
               <div className="mt-6 flex gap-3 justify-center">
                 <button
                   onClick={closeModal}
-                  className="px-4 py-2 rounded-lg bg-gray-100"
+                  className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handlePayment}
-                  className="px-4 py-2 rounded-lg bg-indigo-600 text-white"
+                  className="px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
                 >
                   Pay Now
                 </button>

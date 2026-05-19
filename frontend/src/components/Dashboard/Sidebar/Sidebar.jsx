@@ -30,11 +30,11 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar, only visible till md breakpoint */}
-      <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+      <div className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
-              <span className="text-xl font-bold text-lime-700">
+              <span className="text-xl font-bold text-lime-700 dark:text-lime-400">
                 BookCourier
               </span>
             </Link>
@@ -43,7 +43,7 @@ const Sidebar = () => {
 
         <button
           onClick={handleToggle}
-          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
         >
           <AiOutlineBars className="h-5 w-5" />
         </button>
@@ -51,7 +51,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 dark:bg-gray-800 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -59,16 +59,16 @@ const Sidebar = () => {
           {/* Top Content */}
           <div>
             {/* Logo */}
-            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
+            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 dark:bg-lime-900/30 mx-auto">
               <Link to="/">
-                <span className="text-2xl font-bold text-lime-700">
+                <span className="text-2xl font-bold text-lime-700 dark:text-lime-400">
                   BookCourier
                 </span>
               </Link>
             </div>
             {/* Role Indicator */}
             <div className="mt-4 text-center">
-              <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+              <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
                 Role: {role ? role : "Loading..."}
               </span>
             </div>
@@ -93,7 +93,7 @@ const Sidebar = () => {
 
           {/* Bottom Content */}
           <div>
-            <hr />
+            <hr className="border-gray-300 dark:border-gray-600" />
 
             <MenuItem
               icon={FcSettings}
@@ -102,7 +102,7 @@ const Sidebar = () => {
             />
             <button
               onClick={logOut}
-              className="flex cursor-pointer w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+              className="flex cursor-pointer w-full items-center px-4 py-2 mt-5 text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-300 transform"
             >
               <GrLogout className="w-5 h-5" />
 
