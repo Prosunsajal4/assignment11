@@ -207,7 +207,7 @@ const Navbar = () => {
                     ref={menuRef}
                     role="menu"
                     aria-label="User menu"
-                    className="absolute right-0 top-14 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden animate-scaleIn z-50"
+                    className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden animate-scaleIn z-[999]"
                   >
                     {user ? (
                       <>
