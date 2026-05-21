@@ -20,6 +20,7 @@ const Navbar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const dropdownRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
@@ -55,7 +56,10 @@ const Navbar = () => {
   useEffect(() => {
     if (!isOpen) return;
     const onDocumentClick = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
+      if (
+        menuRef.current && !menuRef.current.contains(e.target) &&
+        dropdownRef.current && !dropdownRef.current.contains(e.target)
+      ) {
         setIsOpen(false);
       }
     };
@@ -183,7 +187,7 @@ const Navbar = () => {
               </button>
 
               {/* User Menu */}
-              <div className="relative">
+              <div className="relative" ref={menuRef}>
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   aria-haspopup="menu"
@@ -200,129 +204,129 @@ const Navbar = () => {
                     alt="profile"
                   />
                 </button>
+              </div>
 
-                {/* Dropdown Menu */}
-                {isOpen && (
-                  <div
-                    ref={menuRef}
-                    role="menu"
-                    aria-label="User menu"
-                    className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden animate-scaleIn z-[999]"
-                  >
-                    {user ? (
-                      <>
-                        <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-700 dark:to-gray-700">
-                          <div className="flex items-center gap-3">
-                            <img
-                              src={user.photoURL || avatarImg}
-                              alt={user.displayName}
-                              className="w-12 h-12 rounded-full object-cover ring-2 ring-white dark:ring-gray-600"
-                            />
-                            <div>
-                              <p className="font-semibold text-gray-800 dark:text-white truncate">
-                                {user.displayName || "User"}
-                              </p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
-                                {user.email}
-                              </p>
-                            </div>
+              {/* Dropdown Menu - outside Container for full viewport positioning */}
+              {isOpen && (
+                <div
+                  ref={dropdownRef}
+                  role="menu"
+                  aria-label="User menu"
+                  className="fixed top-20 right-4 md:right-20 w-64 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden animate-scaleIn z-[9999]"
+                >
+                  {user ? (
+                    <>
+                      <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-700 dark:to-gray-700">
+                        <div className="flex items-center gap-3">
+                          <img
+                            src={user.photoURL || avatarImg}
+                            alt={user.displayName}
+                            className="w-12 h-12 rounded-full object-cover ring-2 ring-white dark:ring-gray-600"
+                          />
+                          <div>
+                            <p className="font-semibold text-gray-800 dark:text-white truncate">
+                              {user.displayName || "User"}
+                            </p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                              {user.email}
+                            </p>
                           </div>
                         </div>
+                      </div>
 
-                        <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
-                          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Navigation</p>
-                          <div className="grid grid-cols-2 gap-1">
-                            {navLinks.map((link) => (
-                              <Link
-                                key={link.to}
-                                to={link.to}
-                                onClick={() => setIsOpen(false)}
-                                className="px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
-                              >
-                                {link.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="p-2">
-                          <Link
-                            to="/dashboard"
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
-                          >
-                            <FaTachometerAlt className="text-indigo-500" />
-                            Dashboard
-                          </Link>
-                          <Link
-                            to="/dashboard/my-wishlist"
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
-                          >
-                            <FaHeart className="text-pink-500" />
-                            My Wishlist
-                          </Link>
-                          <Link
-                            to="/dashboard/my-orders"
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
-                          >
-                            <FaShoppingBag className="text-emerald-500" />
-                            My Orders
-                          </Link>
-                          <Link
-                            to="/dashboard/profile"
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
-                          >
-                            <FaUser className="text-purple-500" />
-                            Profile
-                          </Link>
-                          <button
-                            onClick={() => {
-                              logOut();
-                              setIsOpen(false);
-                            }}
-                            className="w-full flex items-center gap-3 px-4 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200"
-                          >
-                            <FaSignOutAlt />
-                            Logout
-                          </button>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="p-2">
-                        <div className="lg:hidden border-b border-gray-100 dark:border-gray-700 pb-2 mb-2">
+                      <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
+                        <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">Navigation</p>
+                        <div className="grid grid-cols-2 gap-1">
                           {navLinks.map((link) => (
                             <Link
                               key={link.to}
                               to={link.to}
                               onClick={() => setIsOpen(false)}
-                              className="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
+                              className="px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
                             >
                               {link.label}
                             </Link>
                           ))}
                         </div>
-                        <Link
-                          to="/login"
-                          onClick={() => setIsOpen(false)}
-                          className="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200 font-medium"
-                        >
-                          Login
-                        </Link>
-                        <Link
-                          to="/signup"
-                          onClick={() => setIsOpen(false)}
-                          className="block px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl text-center font-medium mt-2 hover:shadow-lg transition-shadow duration-200"
-                        >
-                          Sign Up
-                        </Link>
                       </div>
-                    )}
-                  </div>
-                )}
-              </div>
+
+                      <div className="p-2">
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
+                        >
+                          <FaTachometerAlt className="text-indigo-500" />
+                          Dashboard
+                        </Link>
+                        <Link
+                          to="/dashboard/my-wishlist"
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
+                        >
+                          <FaHeart className="text-pink-500" />
+                          My Wishlist
+                        </Link>
+                        <Link
+                          to="/dashboard/my-orders"
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
+                        >
+                          <FaShoppingBag className="text-emerald-500" />
+                          My Orders
+                        </Link>
+                        <Link
+                          to="/dashboard/profile"
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
+                        >
+                          <FaUser className="text-purple-500" />
+                          Profile
+                        </Link>
+                        <button
+                          onClick={() => {
+                            logOut();
+                            setIsOpen(false);
+                          }}
+                          className="w-full flex items-center gap-3 px-4 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200"
+                        >
+                          <FaSignOutAlt />
+                          Logout
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="p-2">
+                      <div className="lg:hidden border-b border-gray-100 dark:border-gray-700 pb-2 mb-2">
+                        {navLinks.map((link) => (
+                          <Link
+                            key={link.to}
+                            to={link.to}
+                            onClick={() => setIsOpen(false)}
+                            className="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                      <Link
+                        to="/login"
+                        onClick={() => setIsOpen(false)}
+                        className="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-indigo-50 dark:hover:bg-gray-700 rounded-xl transition-colors duration-200 font-medium"
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        to="/signup"
+                        onClick={() => setIsOpen(false)}
+                        className="block px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl text-center font-medium mt-2 hover:shadow-lg transition-shadow duration-200"
+                      >
+                        Sign Up
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </Container>
